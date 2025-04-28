@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sastra ELibrary | Academic Resources & Tools for Sastra University Students</title>
+
+  <link rel="icon" type="image/png" href="Designer.png">
+
+<meta name="description" content="Sastra eLibrary offers students access to a vast range of academic resources, calculators, and tools for their academic success at Sastra University.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #f59e0b;
+      --tertiary: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --success: #10b981;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--gray-50);
+      color: var(--gray-800);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ===== Header ===== */
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 1.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .logo-icon {
+      background-color: white;
+      color: var(--primary);
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      opacity: 0.9;
+      transition: all 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    .mobile-menu-button {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      padding: 6rem 0;
+      text-align: center;
+      background: linear-gradient(to bottom, var(--primary-dark), var(--primary));
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+      z-index: 1;
+    }
+
+    /* ===== Search Bar ===== */
+    .search-section {
+      margin-top: -2.5rem;
+      position: relative;
+      z-index: 10;
+      padding-bottom: 2rem;
+    }
+
+    .search-container {
+      background-color: white;
+      border-radius: 1rem;
+      box-shadow: var(--shadow-lg);
+      padding: 1.5rem;
+      position: relative;
+      transform: translateY(0);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .search-container:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .search-box {
+      display: flex;
+      position: relative;
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 1rem 1rem 1rem 3rem;
+      border: 1px solid var(--gray-200);
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+      background-color: var(--gray-50);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-400);
+    }
+
+    #dropdown {
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      left: 0;
+      right: 0;
+      background-color: white;
+      border-radius: 0.5rem;
+      box-shadow: var(--shadow-lg);
+      z-index: 20;
+      max-height: 300px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .dropdown-item {
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .dropdown-item:hover {
+      background-color: var(--gray-100);
+    }
+
+    /* ===== Main Content ===== */
+    .main-content {
+      padding: 3rem 0;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--gray-900);
+      position: relative;
+      padding-bottom: 0.75rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 3rem;
+      height: 0.25rem;
+      background-color: var(--primary);
+      border-radius: 0.125rem;
+    }
+
+    /* ===== Card Grid ===== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .card-academic {
+      border-top: 4px solid var(--primary);
+    }
+
+    .card-btech {
+      border-top: 4px solid var(--danger);
+    }
+
+    .card-bca {
+      border-top: 4px solid var(--tertiary);
+    }
+
+    .card-bcom {
+      border-top: 4px solid var(--warning);
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--gray-900);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .card-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .card-academic .card-icon {
+      background-color: rgba(99, 102, 241, 0.1);
+      color: var(--primary);
+    }
+
+    .card-btech .card-icon {
+      background-color: rgba(239, 68, 68, 0.1);
+      color: var(--danger);
+    }
+
+    .card-bca .card-icon {
+      background-color: rgba(16, 185, 129, 0.1);
+      color: var(--tertiary);
+    }
+
+    .card-bcom .card-icon {
+      background-color: rgba(245, 158, 11, 0.1);
+      color: var(--warning);
+    }
+
+    .card-text {
+      color: var(--gray-600);
+      margin-bottom: 1.5rem;
+    }
+
+    .card-action {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.75rem 1.25rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      gap: 0.5rem;
+      border: none;
+      cursor: pointer;
+      background-color: transparent;
+    }
+
+    .card-academic .card-action {
+      background-color: rgba(99, 102, 241, 0.1);
+      color: var(--primary);
+    }
+
+    .card-btech .card-action {
+      background-color: rgba(239, 68, 68, 0.1);
+      color: var(--danger);
+    }
+
+    .card-bca .card-action {
+      background-color: rgba(16, 185, 129, 0.1);
+      color: var(--tertiary);
+    }
+
+    .card-bcom .card-action {
+      background-color: rgba(245, 158, 11, 0.1);
+      color: var(--warning);
+    }
+
+    .card-academic .card-action:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .card-btech .card-action:hover {
+      background-color: var(--danger);
+      color: white;
+    }
+
+    .card-bca .card-action:hover {
+      background-color: var(--tertiary);
+      color: white;
+    }
+
+    .card-bcom .card-action:hover {
+      background-color: var(--warning);
+      color: white;
+    }
+
+    /* ===== Modal ===== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background-color: white;
+      border-radius: 1rem;
+      box-shadow: var(--shadow-xl);
+      width: 90%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active .modal {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--gray-900);
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--gray-500);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close:hover {
+      color: var(--gray-900);
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+    }
+
+    .modal-footer {
+      padding: 1.5rem;
+      border-top: 1px solid var(--gray-200);
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+
+    /* ===== Academic Utilities ===== */
+    .academic-tools {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .tool-card {
+      background-color: white;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .tool-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .grade-estimation .tool-icon {
+      background-color: rgba(239, 68, 68, 0.1);
+      color: var(--danger);
+    }
+
+    .class-skippability .tool-icon {
+      background-color: rgba(99, 102, 241, 0.1);
+      color: var(--primary);
+    }
+
+    .sgpa-calculator .tool-icon {
+      background-color: rgba(245, 158, 11, 0.1);
+      color: var(--warning);
+    }
+
+    .cgpa-calculator .tool-icon {
+      background-color: rgba(16, 185, 129, 0.1);
+      color: var(--tertiary);
+    }
+
+    .tool-title {
+      font-weight: 600;
+      color: var(--gray-900);
+      font-size: 1.125rem;
+    }
+
+    .tool-description {
+      color: var(--gray-600);
+      font-size: 0.875rem;
+      margin-bottom: auto;
+    }
+
+    .tool-button {
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+
+    .grade-estimation .tool-button {
+      background-color: rgba(239, 68, 68, 0.1);
+      color: var(--danger);
+    }
+
+    .class-skippability .tool-button {
+      background-color: rgba(99, 102, 241, 0.1);
+      color: var(--primary);
+    }
+
+    .sgpa-calculator .tool-button {
+      background-color: rgba(245, 158, 11, 0.1);
+      color: var(--warning);
+    }
+
+    .cgpa-calculator .tool-button {
+      background-color: rgba(16, 185, 129, 0.1);
+      color: var(--tertiary);
+    }
+
+    .grade-estimation .tool-button:hover {
+      background-color: var(--danger);
+      color: white;
+    }
+
+    .class-skippability .tool-button:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .sgpa-calculator .tool-button:hover {
+      background-color: var(--warning);
+      color: white;
+    }
+
+    .cgpa-calculator .tool-button:hover {
+      background-color: var(--tertiary);
+      color: white;
+    }
+
+    /* ===== Form Controls ===== */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--gray-700);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--gray-300);
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+
+    select.form-control {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+      background-position: right 1rem center;
+      background-repeat: no-repeat;
+      background-size: 1rem;
+      padding-right: 2.5rem;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    /* ===== Button Styles ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      gap: 0.5rem;
+      border: none;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .btn-secondary {
+      background-color: white;
+      color: var(--gray-700);
+      border: 1px solid var(--gray-300);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--gray-50);
+    }
+
+    .btn-danger {
+      background-color: var(--danger);
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background-color: #dc2626;
+    }
+
+    .btn-success {
+      background-color: var(--tertiary);
+      color: white;
+    }
+
+    .btn-success:hover {
+      background-color: #059669;
+    }
+
+    /* ===== Result Displays ===== */
+    .result-box {
+      background-color: var(--gray-50);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin-top: 1.5rem;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .result-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--gray-900);
+    }
+
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .result-item:last-child {
+      border-bottom: none;
+    }
+
+    .result-highlight {
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 1.25rem;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    /* ===== SGPA/CGPA Calculator Styles ===== */
+    .subject-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+
+    .semester-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn-remove {
+      background-color: rgba(239, 68, 68, 0.1);
+      color: var(--danger);
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+
+    .btn-remove:hover {
+      background-color: var(--danger);
+      color: white;
+    }
+
+    .btn-add {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      background-color: var(--gray-100);
+      color: var(--gray-700);
+      margin-bottom: 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      gap: 0.5rem;
+    }
+
+    .btn-add:hover {
+      background-color: var(--gray-200);
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      background-color: var(--gray-900);
+      color: var(--gray-300);
+      padding: 3rem 0;
+      margin-top: 3rem;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-title {
+      color: white;
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links a {
+      color: var(--gray-400);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid var(--gray-800);
+      color: var(--gray-500);
+      font-size: 0.875rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 9999px;
+      background-color: var(--gray-800);
+      color: var(--gray-300);
+      transition: all 0.2s ease;
+    }
+
+    .social-link:hover {
+      background-color: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* ===== Responsive Styles ===== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-button {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .subject-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .btn-remove {
+        grid-column: 2;
+        justify-self: end;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .subject-row,
+      .semester-row {
+        grid-template-columns: 1fr;
+      }
+
+      .modal {
+        width: 95%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <div class="logo-icon">
+           <!-- <i class="fas fa-book"></i> -->
+          <img src="logo.png" alt="Sastra eLibrary Logo" style="width: 50px; height: auto; border-radius: 10px;" />
+
+
+          </div>
+          <span>Sastra ELibrary</span>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#materials">Materials</a></li>
+          <li><a href="#tools">Tools</a></li>
+          <li><a href="https://sas.sastra.edu/hallplan/">Hall Plan</a></li>
+          <li><a href="https://www.sastra.edu/downloads/menu/Academics/2024-25/MC_Academic_Calendar_2024-25.pdf">Academic Calender</a></li>
+        </ul>
+        <button class="mobile-menu-button" id="mobile-menu-button">
+          <i class="fas fa-bars"></i>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-content">
+        <h1>Your Gateway to Smart Learning</h1>
+        <p>Access a wide range of materials, calculators, and resources to support your academic success at Sastra University.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Section -->
+  <section class="search-section">
+    <div class="container">
+      <div class="search-container">
+        <div class="search-box">
+          <span class="search-icon">
+            <i class="fas fa-search"></i>
+          </span>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search for materials, tools, or resources...">
+        </div>
+        <div id="dropdown"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Academic Utilities Section -->
+      <section id="tools">
+        <h2 class="section-title">Academic Utilities</h2>
+        <div class="academic-tools">
+          <!-- Grade Estimation -->
+          <div class="tool-card grade-estimation">
+            <div class="tool-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 class="tool-title">Grade Estimation</h3>
+            <p class="tool-description">Calculate the marks required in your final exam to achieve your target grade based on your internal marks.</p>
+            <button class="tool-button" id="grade-estimation-btn">
+              Calculate Now
+            </button>
+          </div>
+
+          <!-- Class Skippability -->
+          <div class="tool-card class-skippability">
+            <div class="tool-icon">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <h3 class="tool-title">Class Skippability</h3>
+            <p class="tool-description">Find out how many more classes you can safely skip while maintaining the required attendance percentage.</p>
+            <button class="tool-button" id="class-skippability-btn">
+              Calculate Now
+            </button>
+          </div>
+
+          <!-- SGPA Calculator -->
+          <div class="tool-card sgpa-calculator">
+            <div class="tool-icon">
+              <i class="fas fa-calculator"></i>
+            </div>
+            <h3 class="tool-title">SGPA Calculator</h3>
+            <p class="tool-description">Calculate your Semester Grade Point Average based on your individual subject grades and credits.</p>
+            <button class="tool-button" id="sgpa-calculator-btn">
+              Calculate Now
+            </button>
+          </div>
+
+          <!-- CGPA Calculator -->
+          <div class="tool-card cgpa-calculator">
+            <div class="tool-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3 class="tool-title">CGPA Calculator</h3>
+            <p class="tool-description">Calculate your Cumulative Grade Point Average across multiple semesters to track your overall performance.</p>
+            <button class="tool-button" id="cgpa-calculator-btn">
+              Calculate Now
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Programs Section -->
+      <section id="materials" style="margin-top: 3rem;">
+        <h2 class="section-title">Study Materials</h2>
+        <div class="card-grid">
+          <!-- B.TECH Card -->
+          <div class="card card-btech">
+            <div class="card-body">
+              <h3 class="card-title">
+                <div class="card-icon">
+                  <i class="fas fa-microchip"></i>
+                </div>
+                B.TECH
+              </h3>
+              <p class="card-text">Access lecture notes, question papers, textbooks, and other study materials for B.TECH courses.</p>
+              <button class="card-action" id="btech-btn">
+                Browse Materials <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- BCA Card -->
+          <div class="card card-bca">
+            <div class="card-body">
+              <h3 class="card-title">
+                <div class="card-icon">
+                  <i class="fas fa-laptop-code"></i>
+                </div>
+                BCA
+              </h3>
+              <p class="card-text">Find comprehensive study resources for Bachelor of Computer Applications program.</p>
+              <button class="card-action" id="bca-btn">
+                Browse Materials <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- BCOM Card -->
+          <div class="card card-bcom">
+            <div class="card-body">
+              <h3 class="card-title">
+                <div class="card-icon">
+                  <i class="fas fa-chart-bar"></i>
+                </div>
+                BCOM
+              </h3>
+              <p class="card-text">Access study materials and resources for Bachelor of Commerce students.</p>
+              <button class="card-action" id="bcom-btn">
+                Browse Materials <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Academic Updates Card -->
+          <div class="card card-academic">
+            <div class="card-body">
+              <h3 class="card-title">
+                <div class="card-icon">
+                  <i class="fas fa-bell"></i>
+                </div>
+                Academic Updates
+              </h3>
+              <p class="card-text">Stay informed with the latest academic announcements, exam schedules, and important notices.</p>
+              <a href="https://www.sastra.edu/academic-updates.html" target="_blank" class="card-action">
+                View Updates <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Grade Estimation Modal -->
+  <div id="gradeEstimationModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Grade Estimation Calculator</h3>
+        <button class="modal-close" id="close-grade-estimation">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="internalMarks">Enter Internal Marks (out of 50)</label>
+          <input type="number" id="internalMarks" class="form-control" min="0" max="50" placeholder="Enter your internal marks">
+        </div>
+        <button class="btn btn-primary" id="calculate-grade-btn">
+          <i class="fas fa-calculator"></i> Calculate Required Marks
+        </button>
+        <div id="gradeEstimationResult" class="result-box" style="display: none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Class Skippability Modal -->
+  <div id="classSkippabilityModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Class Skippability Calculator</h3>
+        <button class="modal-close" id="close-class-skippability">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="credits">Total Credits</label>
+          <input type="number" id="credits" class="form-control" min="18" max="25" placeholder="Enter total credits (18-25)">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="skippedClasses">Classes Already Skipped</label>
+          <input type="number" id="skippedClasses" class="form-control" min="0" placeholder="Enter number of classes already skipped">
+        </div>
+        <button class="btn btn-primary" id="calculate-skipped-btn">
+          <i class="fas fa-calculator"></i> Calculate
+        </button>
+        <div id="skippableClassesResult" class="result-box" style="display: none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SGPA Calculator Modal -->
+  <div id="sgpaCalculatorModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">SGPA Calculator</h3>
+        <button class="modal-close" id="close-sgpa">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <button class="btn-add" id="add-subject-btn">
+          <i class="fas fa-plus"></i> Add Subject
+        </button>
+        <div id="subjectFields"></div>
+        <button class="btn btn-primary" id="calculate-sgpa-btn">
+          <i class="fas fa-calculator"></i> Calculate SGPA
+        </button>
+        <div id="sgpaResult" class="result-box" style="display: none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CGPA Calculator Modal -->
+  <div id="cgpaCalculatorModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">CGPA Calculator</h3>
+        <button class="modal-close" id="close-cgpa">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="numSemesters">Number of Semesters</label>
+          <input type="number" id="numSemesters" class="form-control" min="1" max="8" value="1">
+        </div>
+        <div id="semesterInputs"></div>
+        <button class="btn btn-primary" id="calculate-cgpa-btn">
+          <i class="fas fa-calculator"></i> Calculate CGPA
+        </button>
+        <div id="cgpaResult" class="result-box" style="display: none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BTECH Modal -->
+  <div id="btechModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">B.TECH Materials</h3>
+        <button class="modal-close" id="close-btech">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="btechForm">
+          <div class="form-group">
+            <label class="form-label" for="programBTECH">Program</label>
+            <select id="programBTECH" class="form-control">
+              <option value="ECE">Electronics & Communication Engineering (ECE)</option>
+              <option value="CSE">Computer Science Engineering (CSE)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="semesterBTECH">Semester</label>
+            <select id="semesterBTECH" class="form-control">
+              <option value="1">Semester 1</option>
+              <option value="2">Semester 2</option>
+              <option value="3">Semester 3</option>
+              <option value="4">Semester 4</option>
+              <option value="5">Semester 5</option>
+              <option value="6">Semester 6</option>
+              <option value="7">Semester 7</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-folder-open"></i> Access Materials
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- BCA Modal -->
+  <div id="bcaModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">BCA Materials</h3>
+        <button class="modal-close" id="close-bca">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center; padding: 2rem 0;">
+          <i class="fas fa-code" style="font-size: 3rem; color: var(--tertiary); margin-bottom: 1rem;"></i>
+          <h3 style="margin-bottom: 1rem;">Coming Soon</h3>
+          <p>We're currently uploading BCA materials. Check back later for access.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BCOM Modal -->
+  <div id="bcomModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">BCOM Materials</h3>
+        <button class="modal-close" id="close-bcom">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center; padding: 2rem 0;">
+          <i class="fas fa-chart-line" style="font-size: 3rem; color: var(--warning); margin-bottom: 1rem;"></i>
+          <h3 style="margin-bottom: 1rem;">Coming Soon</h3>
+          <p>We're currently uploading BCOM materials. Check back later for access.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3 class="footer-title">Sastra ELibrary</h3>
+          <p>A comprehensive digital library and academic utility platform for Sastra University students.</p>
+          <div class="social-links">
+         
+            <a href="https://www.linkedin.com/in/srinivaspenumarthi/" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/srinivaspenumarthi" class="social-link"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3 class="footer-title">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#tools">Academic Tools</a></li>
+            <li><a href="#materials">Study Materials</a></li>
+            <li><a href="https://www.sastra.edu/academic-updates.html">Academic Updates</a></li>
+           
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3 class="footer-title">Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#" id="footer-btech">B.TECH Materials</a></li>
+            <li><a href="#" id="footer-bca">BCA Materials</a></li>
+            <li><a href="#" id="footer-bcom">BCOM Materials</a></li>
+            <li><a href="https://www.sastra.edu" target="_blank">Sastra University</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3 class="footer-title">Contact</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-envelope"></i> <a href="mailto:srinivaspenumarthi2244@gmail.com">srinivaspenumarthi2244@gmail.com</a></li>
+           
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2024 Srinivas Penumarthi. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Wait for DOM to fully load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize SGPA calculator with one subject
+      addSubject();
+      
+      // Initialize CGPA calculator with default value
+      updateSemesters();
+      
+      // Set up event listeners for buttons to open modals
+      document.getElementById('grade-estimation-btn').addEventListener('click', function() {
+        openModal('gradeEstimationModal');
+      });
+      
+      document.getElementById('class-skippability-btn').addEventListener('click', function() {
+        openModal('classSkippabilityModal');
+      });
+      
+      document.getElementById('sgpa-calculator-btn').addEventListener('click', function() {
+        openModal('sgpaCalculatorModal');
+      });
+      
+      document.getElementById('cgpa-calculator-btn').addEventListener('click', function() {
+        openModal('cgpaCalculatorModal');
+      });
+      
+      document.getElementById('btech-btn').addEventListener('click', function() {
+        openModal('btechModal');
+      });
+      
+      document.getElementById('bca-btn').addEventListener('click', function() {
+        openModal('bcaModal');
+      });
+      
+      document.getElementById('bcom-btn').addEventListener('click', function() {
+        openModal('bcomModal');
+      });
+
+      // Set up event listeners for footer links
+      document.getElementById('footer-btech').addEventListener('click', function(e) {
+        e.preventDefault();
+        openModal('btechModal');
+      });
+      
+      document.getElementById('footer-bca').addEventListener('click', function(e) {
+        e.preventDefault();
+        openModal('bcaModal');
+      });
+      
+      document.getElementById('footer-bcom').addEventListener('click', function(e) {
+        e.preventDefault();
+        openModal('bcomModal');
+      });
+      
+      // Set up event listeners for closing modals
+      document.getElementById('close-grade-estimation').addEventListener('click', function() {
+        closeModal('gradeEstimationModal');
+      });
+      
+      document.getElementById('close-class-skippability').addEventListener('click', function() {
+        closeModal('classSkippabilityModal');
+      });
+      
+      document.getElementById('close-sgpa').addEventListener('click', function() {
+        closeModal('sgpaCalculatorModal');
+      });
+      
+      document.getElementById('close-cgpa').addEventListener('click', function() {
+        closeModal('cgpaCalculatorModal');
+      });
+      
+      document.getElementById('close-btech').addEventListener('click', function() {
+        closeModal('btechModal');
+      });
+      
+      document.getElementById('close-bca').addEventListener('click', function() {
+        closeModal('bcaModal');
+      });
+      
+      document.getElementById('close-bcom').addEventListener('click', function() {
+        closeModal('bcomModal');
+      });
+      
+      // Close modal when clicking outside
+      document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
+        overlay.addEventListener('click', function(event) {
+          if (event.target === this) {
+            closeModal(this.id);
+          }
+        });
+      });
+
+      // Set up event listeners for calculator buttons
+      document.getElementById('calculate-grade-btn').addEventListener('click', calculateGradeEstimation);
+      document.getElementById('calculate-skipped-btn').addEventListener('click', calculateSkippedClasses);
+      document.getElementById('calculate-sgpa-btn').addEventListener('click', calculateSgpa);
+      document.getElementById('calculate-cgpa-btn').addEventListener('click', calculateCGPA);
+      document.getElementById('add-subject-btn').addEventListener('click', addSubject);
+      
+      // Set up event listener for BTECH form submission
+      document.getElementById('btechForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        submitForm('BTECH');
+      });
+      
+      // Set up event listener for number of semesters change
+      document.getElementById('numSemesters').addEventListener('change', updateSemesters);
+      
+      // Set up event listener for search input
+      document.getElementById('searchInput').addEventListener('input', showDropdown);
+      
+      // Set up event listener for mobile menu button
+      document.getElementById('mobile-menu-button').addEventListener('click', toggleMobileMenu);
+    });
+
+    // Modal functions
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Grade Estimation Calculator
+    function calculateGradeEstimation() {
+      const internalMarksInput = document.getElementById('internalMarks');
+      const internalMarks = parseInt(internalMarksInput.value);
+      const resultDiv = document.getElementById('gradeEstimationResult');
+
+      if (isNaN(internalMarks) || internalMarks < 0 || internalMarks > 50) {
+        alert('Please enter valid internal marks between 0 and 50.');
+        return;
+      }
+
+      const gradeRequirements = {
+        'S': 91,
+        'A+': 86,
+        'A': 76,
+        'B': 66,
+        'C': 55,
+        'D': 50
+      };
+
+      let resultHTML = `<div class="result-title">Required Marks (out of 100)</div>`;
+
+      for (const [grade, threshold] of Object.entries(gradeRequirements)) {
+        const requiredMarks = (threshold - internalMarks) * 2;
+        const displayMarks = requiredMarks < 0 || requiredMarks > 100 ? 'N/A' : Math.round(requiredMarks * 100) / 100;
+        
+        resultHTML += `
+          <div class="result-item">
+            <span>For ${grade} grade:</span>
+            <strong>${displayMarks}</strong>
+          </div>
+        `;
+      }
+
+      resultDiv.innerHTML = resultHTML;
+      resultDiv.style.display = 'block';
+    }
+
+    // Class Skippability Calculator
+    function calculateSkippedClasses() {
+      const creditsInput = document.getElementById('credits');
+      const skippedClassesInput = document.getElementById('skippedClasses');
+      const resultDiv = document.getElementById('skippableClassesResult');
+
+      const credits = parseInt(creditsInput.value);
+      const skippedClasses = parseInt(skippedClassesInput.value);
+
+      if (isNaN(credits) || credits < 18 || credits > 25) {
+        alert('Please enter valid credits between 18 and 25.');
+        return;
+      }
+      if (isNaN(skippedClasses) || skippedClasses < 0) {
+        alert('Please enter a valid number of skipped classes.');
+        return;
+      }
+
+      const maxSkippableClasses = {
+        18: 57,
+        19: 60,
+        20: 64,
+        21: 67,
+        22: 70,
+        23: 73,
+        24: 76,
+        25: 80
+      };
+
+      const maxClasses = maxSkippableClasses[credits];
+      const classesToSkip = Math.max(0, maxClasses - skippedClasses);
+
+      resultDiv.innerHTML = `
+        <div class="result-title">Attendance Information</div>
+        <div class="result-item">
+          <span>Total skippable classes:</span>
+          <strong>${maxClasses}</strong>
+        </div>
+        <div class="result-item">
+          <span>Already skipped:</span>
+          <strong>${skippedClasses}</strong>
+        </div>
+        <div class="result-highlight">You can skip ${classesToSkip} more classes</div>
+      `;
+      resultDiv.style.display = 'block';
+    }
+
+    // SGPA Calculator Functions
+    let subjectCount = 0;
+
+    function addSubject() {
+      subjectCount++;
+      const subjectFields = document.getElementById('subjectFields');
+      const subjectDiv = document.createElement('div');
+      subjectDiv.className = 'subject-row';
+      subjectDiv.id = `subject${subjectCount}`;
+      subjectDiv.innerHTML = `
+        <div>
+          <label class="form-label" for="creditsSubject${subjectCount}">Credits</label>
+          <input type="number" id="creditsSubject${subjectCount}" class="form-control" min="1" max="4" value="3">
+        </div>
+        <div>
+          <label class="form-label" for="gradeSubject${subjectCount}">Grade</label>
+          <select id="gradeSubject${subjectCount}" class="form-control">
+            <option value="S">S (10)</option>
+            <option value="A+">A+ (9)</option>
+            <option value="A">A (8)</option>
+            <option value="B">B (7)</option>
+            <option value="C">C (6)</option>
+            <option value="D">D (5)</option>
+            <option value="F">F (2)</option>
+          </select>
+        </div>
+        <button type="button" class="btn-remove" onclick="removeSubject(${subjectCount})">
+          <i class="fas fa-times"></i>
+        </button>
+      `;
+      subjectFields.appendChild(subjectDiv);
+    }
+
+    function removeSubject(id) {
+      const subject = document.getElementById(`subject${id}`);
+      if (subject && document.getElementById('subjectFields').childElementCount > 1) {
+        subject.remove();
+      } else {
+        alert("You must have at least one subject.");
+      }
+    }
+
+    function calculateSgpa() {
+      let totalCredits = 0;
+      let totalGradePoints = 0;
+      const resultDiv = document.getElementById('sgpaResult');
+      const subjectDivs = document.querySelectorAll('[id^="subject"]');
+
+      if (subjectDivs.length === 0) {
+        alert("Please add at least one subject.");
+        return;
+      }
+
+      let resultHTML = `<div class="result-title">Subject Details</div>`;
+
+      for (const subjectDiv of subjectDivs) {
+        const id = subjectDiv.id.replace('subject', '');
+        const creditsInput = document.getElementById(`creditsSubject${id}`);
+        const gradeSelect = document.getElementById(`gradeSubject${id}`);
+        
+        if (!creditsInput || !gradeSelect) continue;
+        
+        const credits = parseInt(creditsInput.value);
+        const grade = gradeSelect.value;
+        
+        if (isNaN(credits) || credits < 1) {
+          alert(`Please enter valid credits for subject ${id}.`);
+          return;
+        }
+        
+        const gradePoints = getGradePoints(grade);
+        const subjectPoints = credits * gradePoints;
+        
+        totalCredits += credits;
+        totalGradePoints += subjectPoints;
+        
+        resultHTML += `
+          <div class="result-item">
+            <span>Subject ${id} (${credits} credits, ${grade}):</span>
+            <strong>${subjectPoints} points</strong>
+          </div>
+        `;
+      }
+      
+      const sgpa = totalGradePoints / totalCredits;
+      
+      resultHTML += `
+        <div class="result-item">
+          <span>Total Credits:</span>
+          <strong>${totalCredits}</strong>
+        </div>
+        <div class="result-item">
+          <span>Total Grade Points:</span>
+          <strong>${totalGradePoints}</strong>
+        </div>
+        <div class="result-highlight">SGPA: ${sgpa.toFixed(2)}</div>
+      `;
+      
+      resultDiv.innerHTML = resultHTML;
+      resultDiv.style.display = 'block';
+    }
+
+    function getGradePoints(grade) {
+      const gradePoints = {
+        'S': 10,
+        'A+': 9,
+        'A': 8,
+        'B': 7,
+        'C': 6,
+        'D': 5,
+        'F': 2
+      };
+      return gradePoints[grade] || 0;
+    }
+
+    // CGPA Calculator Functions
+    function updateSemesters() {
+      const numSemesters = parseInt(document.getElementById('numSemesters').value);
+      const semesterInputs = document.getElementById('semesterInputs');
+      semesterInputs.innerHTML = '';
+
+      for (let i = 1; i <= numSemesters; i++) {
+        const semesterDiv = document.createElement('div');
+        semesterDiv.className = 'semester-row';
+        semesterDiv.innerHTML = `
+          <div>
+            <label class="form-label" for="creditsSemester${i}">Credits for Semester ${i}</label>
+            <input type="number" id="creditsSemester${i}" class="form-control" min="1" value="20">
+          </div>
+          <div>
+            <label class="form-label" for="sgpaSemester${i}">SGPA for Semester ${i}</label>
+            <input type="number" id="sgpaSemester${i}" class="form-control" min="0" max="10" step="0.01" value="8.0">
+          </div>
+        `;
+        semesterInputs.appendChild(semesterDiv);
+      }
+    }
+
+    function calculateCGPA() {
+      const numSemesters = parseInt(document.getElementById('numSemesters').value);
+      let totalCredits = 0;
+      let totalGradePoints = 0;
+      const resultDiv = document.getElementById('cgpaResult');
+
+      let resultHTML = `<div class="result-title">Semester Details</div>`;
+
+      for (let i = 1; i <= numSemesters; i++) {
+        const creditsInput = document.getElementById(`creditsSemester${i}`);
+        const sgpaInput = document.getElementById(`sgpaSemester${i}`);
+        
+        if (!creditsInput || !sgpaInput) continue;
+        
+        const credits = parseInt(creditsInput.value);
+        const sgpa = parseFloat(sgpaInput.value);
+        
+        if (isNaN(credits) || credits < 1) {
+          alert(`Please enter valid credits for semester ${i}.`);
+          return;
+        }
+        
+        if (isNaN(sgpa) || sgpa < 0 || sgpa > 10) {
+          alert(`Please enter valid SGPA (0-10) for semester ${i}.`);
+          return;
+        }
+        
+        const semesterPoints = credits * sgpa;
+        totalCredits += credits;
+        totalGradePoints += semesterPoints;
+        
+        resultHTML += `
+          <div class="result-item">
+            <span>Semester ${i} (${credits} credits, SGPA: ${sgpa}):</span>
+            <strong>${semesterPoints.toFixed(2)} points</strong>
+          </div>
+        `;
+      }
+      
+      const cgpa = totalGradePoints / totalCredits;
+      
+      resultHTML += `
+        <div class="result-item">
+          <span>Total Credits:</span>
+          <strong>${totalCredits}</strong>
+        </div>
+        <div class="result-item">
+          <span>Total Grade Points:</span>
+          <strong>${totalGradePoints.toFixed(2)}</strong>
+        </div>
+        <div class="result-highlight">CGPA: ${cgpa.toFixed(2)}</div>
+      `;
+      
+      resultDiv.innerHTML = resultHTML;
+      resultDiv.style.display = 'block';
+    }
+
+    // Form submission for accessing materials
+    function submitForm(program) {
+      const semester = document.getElementById(`semester${program}`).value;
+      const programSelection = document.getElementById(`program${program}`).value;
+
+      const folderLinks = {
+        'ECE1': 'https://drive.google.com/drive/u/0/folders/1CWkJW87GIcDjZQ22X0ohCEDj1cLnKnlx',
+        'ECE2': 'https://drive.google.com/drive/u/0/folders/1CWkJW87GIcDjZQ22X0ohCEDj1cLnKnlx',
+        'ECE3': 'https://drive.google.com/drive/u/1/folders/19U7wFLtcwEg3JOc98JzoHeAQQwYWwlrf',
+        'ECE4': 'https://drive.google.com/drive/folders/1kXEZbQ0OMmZ_s4oa0UXLdP7PplcTwQZ6',
+        'ECE5': 'https://drive.google.com/drive/folders/1gOczbjqIymFWw9NBd3Qqjq3OB_4oOZXL',
+        'ECE6': 'https://drive.google.com/drive/folders/1N1DeqkBEKLvBdEjQLkio9mvrQJ4iBcW_',
+        'ECE7': 'https://drive.google.com/drive/folders/13q8MwbJvpqcOJkJxNpDl3lH8aPlVTO7t',
+        
+        'CSE1': 'https://drive.google.com/drive/u/0/folders/1CWkJW87GIcDjZQ22X0ohCEDj1cLnKnlx',
+        'CSE2': 'https://drive.google.com/drive/u/0/folders/1CWkJW87GIcDjZQ22X0ohCEDj1cLnKnlx',
+        'CSE3': 'https://drive.google.com/drive/u/0/folders/1MvlYBZ2QDFpcOP3FqqUapjTxCkH6SJQt',
+        'CSE4': 'https://drive.google.com/drive/u/0/folders/12lshcGhR0EvwkHgQozfVk6bp2MsCWr6S',
+        'CSE5': 'https://drive.google.com/drive/u/0/folders/1wePTXbNjTwsFbF7bVBzxH6k0RpgOCUwi',
+        'CSE6': 'https://drive.google.com/drive/u/0/folders/11X8ndrMRWlqgepbnbjEX46T08e-NEUcY',
+        'CSE7': 'https://drive.google.com/drive/u/0/folders/1-HEpyaQnS9SXSrfPAvgpUmQMFZ22xxhv'
+      };
+
+      const link = folderLinks[`${programSelection}${semester}`];
+      
+      if (link) {
+        window.open(link, '_blank');
+      } else {
+        alert('Materials for this selection are not available yet.');
+      }
+      
+      return false; // Prevent form submission
+    }
+
+    // Search functionality
+    function showDropdown() {
+      const searchInput = document.getElementById('searchInput');
+      const dropdown = document.getElementById('dropdown');
+      const query = searchInput.value.toLowerCase().trim();
+      
+      if (query.length < 2) {
+        dropdown.style.display = 'none';
+        return;
+      }
+      
+      const searchResults = [
+        { title: 'B.TECH ECE Materials', category: 'Materials', action: function() { document.getElementById('programBTECH').value = 'ECE'; openModal('btechModal'); } },
+        { title: 'B.TECH CSE Materials', category: 'Materials', action: function() { document.getElementById('programBTECH').value = 'CSE'; openModal('btechModal'); } },
+        { title: 'Grade Estimation Calculator', category: 'Tools', action: function() { openModal('gradeEstimationModal'); } },
+        { title: 'Class Skippability Calculator', category: 'Tools', action: function() { openModal('classSkippabilityModal'); } },
+        { title: 'SGPA Calculator', category: 'Tools', action: function() { openModal('sgpaCalculatorModal'); } },
+        { title: 'CGPA Calculator', category: 'Tools', action: function() { openModal('cgpaCalculatorModal'); } },
+        { title: 'Academic Updates', category: 'Updates', action: function() { window.open('https://www.sastra.edu/academic-updates.html', '_blank'); } }
+      ];
+      
+      const filteredResults = searchResults.filter(item => 
+        item.title.toLowerCase().includes(query) || 
+        item.category.toLowerCase().includes(query)
+      );
+      
+      if (filteredResults.length > 0) {
+        dropdown.innerHTML = '';
+        filteredResults.forEach(result => {
+          const item = document.createElement('div');
+          item.className = 'dropdown-item';
+          item.innerHTML = `<strong>${result.title}</strong> <span style="color: var(--gray-500);">${result.category}</span>`;
+          
+          item.addEventListener('click', function() {
+            result.action();
+            searchInput.value = '';
+            dropdown.style.display = 'none';
+          });
+          
+          dropdown.appendChild(item);
+        });
+        
+        dropdown.style.display = 'block';
+      } else {
+        dropdown.innerHTML = '<div class="dropdown-item">No results found</div>';
+        dropdown.style.display = 'block';
+      }
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      const dropdown = document.getElementById('dropdown');
+      const searchInput = document.getElementById('searchInput');
+      
+      if (event.target !== searchInput && dropdown.style.display === 'block') {
+        dropdown.style.display = 'none';
+      }
+    });
+
+    // Mobile menu functionality
+    function toggleMobileMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      
+      if (navLinks.style.display === 'flex') {
+        navLinks.style.display = 'none';
+        mobileMenuButton.innerHTML = '<i class="fas fa-bars"></i>';
+      } else {
+        navLinks.style.display = 'flex';
+        navLinks.style.flexDirection = 'column';
+        navLinks.style.position = 'absolute';
+        navLinks.style.top = '100%';
+        navLinks.style.left = '0';
+        navLinks.style.right = '0';
+        navLinks.style.backgroundColor = 'var(--primary-dark)';
+        navLinks.style.padding = '1rem';
+        navLinks.style.zIndex = '50';
+        mobileMenuButton.innerHTML = '<i class="fas fa-times"></i>';
+      }
+    }
+    
+    // Handle window resize for responsive navigation
+    window.addEventListener('resize', function() {
+      const navLinks = document.querySelector('.nav-links');
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      
+      if (window.innerWidth > 768) {
+        navLinks.style.display = 'flex';
+        navLinks.style.flexDirection = '';
+        navLinks.style.position = '';
+        navLinks.style.top = '';
+        navLinks.style.left = '';
+        navLinks.style.right = '';
+        navLinks.style.backgroundColor = '';
+        navLinks.style.padding = '';
+        navLinks.style.zIndex = '';
+        mobileMenuButton.innerHTML = '<i class="fas fa-bars"></i>';
+      } else if (!navLinks.classList.contains('active-mobile-menu')) {
+        navLinks.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
