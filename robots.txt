@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sastraelibrary.netlify.app/sitemap.xml
