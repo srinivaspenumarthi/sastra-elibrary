@@ -907,43 +907,64 @@
     }
 
     /* ===== Responsive Styles ===== */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
+   /* Tablet & Small Laptop View */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
 
-      .mobile-menu-button {
-        display: block;
-      }
+  .mobile-menu-button {
+    display: block;
+  }
 
-      .hero h1 {
-        font-size: 2.5rem;
-      }
+  .hero h1 {
+    font-size: 2.5rem;
+    line-height: 1.3;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
 
-      .hero p {
-        font-size: 1rem;
-      }
+  .hero p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
 
-      .subject-row {
-        grid-template-columns: 1fr 1fr;
-      }
+  .subject-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
 
-      .btn-remove {
-        grid-column: 2;
-        justify-self: end;
-      }
-    }
+  .btn-remove {
+    grid-column: 2;
+    justify-self: end;
+  }
+}
 
-    @media (max-width: 480px) {
-      .subject-row,
-      .semester-row {
-        grid-template-columns: 1fr;
-      }
+/* Mobile View */
+@media (max-width: 480px) {
+  .subject-row,
+  .semester-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 
-      .modal {
-        width: 95%;
-      }
-    }
+  .modal {
+    width: 95%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+}
   </style>
   
 
