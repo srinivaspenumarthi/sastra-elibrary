@@ -496,7 +496,7 @@
                     <li><a href="https://sas.sastra.edu/hallplan/">Hall Plan</a></li>
                     <li><a href="https://www.sastra.edu/downloads/menu/Academics/2024-25/MC_Academic_Calendar_2024-25.pdf">Academic Calendar</a></li>
                 </ul>
-                <button class="mobile-menu-button">
+                <button class="mobile-menu-button" id="menu-toggle">
                     <i class="fas fa-bars"></i>
                 </button>
             </nav>
@@ -584,136 +584,141 @@
         </div>
     </footer>
 
-    <script>
-        let subjectCount = 0;
+   <script>
+    let subjectCount = 0;
 
-        function addSubject() {
-            subjectCount++;
-            const subjectFields = document.getElementById('subjectFields');
-            const subjectDiv = document.createElement('div');
-            subjectDiv.className = 'subject-row';
-            subjectDiv.id = `subject${subjectCount}`;
-            subjectDiv.innerHTML = `
-                <div>
-                    <label for="creditsSubject${subjectCount}" class="form-label">Credits</label>
-                    <input type="number" id="creditsSubject${subjectCount}" class="form-control" min="1" max="4" value="3">
-                </div>
-                <div>
-                    <label for="gradeSubject${subjectCount}" class="form-label">Grade</label>
-                    <select id="gradeSubject${subjectCount}" class="form-control">
-                        <option value="S">S (10)</option>
-                        <option value="A+">A+ (9)</option>
-                        <option value="A">A (8)</option>
-                        <option value="B">B (7)</option>
-                        <option value="C">C (6)</option>
-                        <option value="D">D (5)</option>
-                        <option value="F">F (2)</option>
-                    </select>
-                </div>
-                <button type="button" class="btn-remove" onclick="removeSubject(${subjectCount})" title="Remove Subject">
-                    <i class="fas fa-times"></i>
-                </button>
-            `;
-            subjectFields.appendChild(subjectDiv);
+    function addSubject() {
+        subjectCount++;
+        const subjectFields = document.getElementById('subjectFields');
+        const subjectDiv = document.createElement('div');
+        subjectDiv.className = 'subject-row';
+        subjectDiv.id = `subject${subjectCount}`;
+        subjectDiv.innerHTML = `
+            <div>
+                <label for="creditsSubject${subjectCount}" class="form-label">Credits</label>
+                <input type="number" id="creditsSubject${subjectCount}" class="form-control" min="1" max="4" value="3" title="Enter course credits (1–4)">
+            </div>
+            <div>
+                <label for="gradeSubject${subjectCount}" class="form-label">Grade</label>
+                <select id="gradeSubject${subjectCount}" class="form-control" title="Select your grade for this subject">
+                    <option value="S">S (10)</option>
+                    <option value="A+">A+ (9)</option>
+                    <option value="A">A (8)</option>
+                    <option value="B">B (7)</option>
+                    <option value="C">C (6)</option>
+                    <option value="D">D (5)</option>
+                    <option value="F">F (2)</option>
+                </select>
+            </div>
+            <button type="button" class="btn-remove" onclick="removeSubject(${subjectCount})" title="Remove this subject">
+                <i class="fas fa-times"></i>
+            </button>
+        `;
+        subjectFields.appendChild(subjectDiv);
+    }
+
+    function removeSubject(id) {
+        const subject = document.getElementById(`subject${id}`);
+        if (subject && document.getElementById('subjectFields').childElementCount > 1) {
+            subject.remove();
+        } else {
+            alert("At least one subject is required.");
+        }
+    }
+
+    function calculateSgpa() {
+        let totalCredits = 0;
+        let totalGradePoints = 0;
+        const resultDiv = document.getElementById('sgpaResult');
+        const subjectDivs = document.querySelectorAll('[id^="subject"]');
+
+        if (subjectDivs.length === 0) {
+            alert("Please add at least one subject.");
+            return;
         }
 
-        function removeSubject(id) {
-            const subject = document.getElementById(`subject${id}`);
-            if (subject && document.getElementById('subjectFields').childElementCount > 1) {
-                subject.remove();
-            } else {
-                alert("You must have at least one subject.");
-            }
-        }
+        let resultHTML = '';
+        let subjectIndex = 1;
 
-        function calculateSgpa() {
-            let totalCredits = 0;
-            let totalGradePoints = 0;
-            const resultDiv = document.getElementById('sgpaResult');
-            const subjectDivs = document.querySelectorAll('[id^="subject"]');
+        for (const subjectDiv of subjectDivs) {
+            const id = subjectDiv.id.replace('subject', '');
+            const creditsInput = document.getElementById(`creditsSubject${id}`);
+            const gradeSelect = document.getElementById(`gradeSubject${id}`);
 
-            if (subjectDivs.length === 0) {
-                alert("Please add at least one subject.");
+            if (!creditsInput || !gradeSelect) continue;
+
+            const credits = parseInt(creditsInput.value);
+            const grade = gradeSelect.value;
+
+            if (isNaN(credits) || credits < 1 || credits > 10) {
+                alert(`Enter valid credits (1–10) for Subject ${subjectIndex}`);
                 return;
             }
 
-            let resultHTML = '';
-            let subjectIndex = 1;
+            const gradePoints = getGradePoints(grade);
+            const subjectPoints = credits * gradePoints;
 
-            for (const subjectDiv of subjectDivs) {
-                const id = subjectDiv.id.replace('subject', '');
-                const creditsInput = document.getElementById(`creditsSubject${id}`);
-                const gradeSelect = document.getElementById(`gradeSubject${id}`);
+            totalCredits += credits;
+            totalGradePoints += subjectPoints;
 
-                if (!creditsInput || !gradeSelect) continue;
-
-                const credits = parseInt(creditsInput.value);
-                const grade = gradeSelect.value;
-
-                if (isNaN(credits) || credits < 1) {
-                    alert(`Please enter valid credits for subject ${subjectIndex}.`);
-                    return;
-                }
-
-                const gradePoints = getGradePoints(grade);
-                const subjectPoints = credits * gradePoints;
-
-                totalCredits += credits;
-                totalGradePoints += subjectPoints;
-
-                resultHTML += `
-                    <div class="result-item">
-                        <span>Subject ${subjectIndex} (${credits} credits, Grade ${grade})</span>
-                        <span><strong>${subjectPoints} points</strong></span>
-                    </div>
-                `;
-                subjectIndex++;
-            }
-
-            const sgpa = totalGradePoints / totalCredits;
-
-            resultHTML = `
-                <div class="result-title">Your SGPA: ${sgpa.toFixed(2)}</div>
-                <div class="result-summary">
-                    <div class="summary-item">
-                        <i class="fas fa-book"></i> Total Credits: ${totalCredits}
-                    </div>
-                    <div class="summary-item">
-                        <i class="fas fa-star"></i> Total Grade Points: ${totalGradePoints}
-                    </div>
+            resultHTML += `
+                <div class="result-item">
+                    <span>Subject ${subjectIndex} (${credits} credits, Grade ${grade})</span>
+                    <span><strong>${subjectPoints} points</strong></span>
                 </div>
-                <hr style="margin: 1rem 0; border: none; height: 1px; background: rgba(255,255,255,0.2);">
-                ${resultHTML}
             `;
-
-            resultDiv.innerHTML = resultHTML;
-            resultDiv.style.display = 'block';
-            
-            // Smooth scroll to results
-            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            subjectIndex++;
         }
 
-        function getGradePoints(grade) {
-            const gradePoints = {
-                'S': 10,
-                'A+': 9,
-                'A': 8,
-                'B': 7,
-                'C': 6,
-                'D': 5,
-                'F': 2
-            };
-            return gradePoints[grade] || 0;
-        }
+        const sgpa = totalGradePoints / totalCredits;
 
-        // Event listeners
-        document.getElementById('add-subject-btn').addEventListener('click', addSubject);
-        document.getElementById('calculate-sgpa-btn').addEventListener('click', calculateSgpa);
+        resultHTML = `
+            <div class="result-title">🎓 Your SGPA: ${sgpa.toFixed(2)}</div>
+            <div class="result-summary">
+                <div class="summary-item">
+                    <i class="fas fa-book"></i> <strong>Total Credits:</strong> ${totalCredits}
+                </div>
+                <div class="summary-item">
+                    <i class="fas fa-star"></i> <strong>Total Grade Points:</strong> ${totalGradePoints}
+                </div>
+            </div>
+            <hr style="margin: 1rem 0; border: none; height: 1px; background: rgba(255,255,255,0.2);">
+            ${resultHTML}
+        `;
 
-        // Add first subject on page load
-        window.addEventListener('load', () => {
-            addSubject();
-        });
-    </script>
+        resultDiv.innerHTML = resultHTML;
+        resultDiv.style.display = 'block';
+        resultDiv.style.opacity = 0;
+
+        // Animate in
+        setTimeout(() => {
+            resultDiv.style.transition = 'opacity 0.6s ease-in-out';
+            resultDiv.style.opacity = 1;
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+    }
+
+    function getGradePoints(grade) {
+        const gradePoints = {
+            'S': 10,
+            'A+': 9,
+            'A': 8,
+            'B': 7,
+            'C': 6,
+            'D': 5,
+            'F': 2
+        };
+        return gradePoints[grade] || 0;
+    }
+
+    // Bind buttons
+    document.getElementById('add-subject-btn').addEventListener('click', addSubject);
+    document.getElementById('calculate-sgpa-btn').addEventListener('click', calculateSgpa);
+
+    // First subject by default
+    window.addEventListener('load', () => {
+        addSubject();
+    });
+</script>
 </body>
 </html>
