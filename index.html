@@ -1049,9 +1049,9 @@
             </div>
             <h3 class="tool-title">Grade Calculator</h3>
             <p class="tool-description">Calculate the marks required in your final exam to achieve your target grade based on your internal marks.</p>
-            <button class="tool-button" id="grade-estimation-btn">
-              Calculate Now
-            </button>
+             <a href="/grade-estimation-calculator" class="tool-button">
+  Calculate Now
+</a>
           </div>
 
           <!-- Class Skippability -->
@@ -1061,9 +1061,9 @@
             </div>
             <h3 class="tool-title">Class Skippability</h3>
             <p class="tool-description">Find out how many more classes you can safely skip while maintaining the required attendance percentage.</p>
-            <button class="tool-button" id="class-skippability-btn">
-              Calculate Now
-            </button>
+             <a href="/class-skippability" class="tool-button">
+  Calculate Now
+</a>
           </div>
 
           <!-- SGPA Calculator -->
@@ -1085,9 +1085,9 @@
             </div>
             <h3 class="tool-title">CGPA Calculator</h3>
             <p class="tool-description">Calculate your Cumulative Grade Point Average across multiple semesters to track your overall performance.</p>
-            <button class="tool-button" id="cgpa-calculator-btn">
-              Calculate Now
-            </button>
+             <a href="/cgpa-grade-calculator" class="tool-button">
+  Calculate Now
+</a>
           </div>
         </div>
       </section>
@@ -1391,18 +1391,7 @@
       updateSemesters();
       
       // Set up event listeners for buttons to open modals
-      document.getElementById('grade-estimation-btn').addEventListener('click', function() {
-        openModal('gradeEstimationModal');
-      });
-      
-      document.getElementById('class-skippability-btn').addEventListener('click', function() {
-        openModal('classSkippabilityModal');
-      });
-      
-      
-      document.getElementById('cgpa-calculator-btn').addEventListener('click', function() {
-        openModal('cgpaCalculatorModal');
-      });
+     
       
       document.getElementById('btech-btn').addEventListener('click', function() {
         openModal('btechModal');
