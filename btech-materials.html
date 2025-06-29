@@ -1,1 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B.TECH Materials - Sastra ELibrary</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f59e0b;
+            --tertiary: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --success: #10b981;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ===== Header ===== */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 40;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .logo-icon {
+            background-color: white;
+            color: var(--primary);
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            opacity: 0.9;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .mobile-menu-button {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ===== Hero Section ===== */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--primary-dark), var(--primary));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            z-index: 1;
+        }
+
+        /* ===== Main Content ===== */
+        .main-content {
+            padding: 3rem 0;
+        }
+
+        .form-container {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-lg);
+            padding: 3rem 2rem;
+            margin-top: -2rem;
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            background-color: white;
+            color: var(--gray-700);
+            transition: all 0.2s ease;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            font-size: 1.125rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            background: linear-gradient(135deg, var(--primary-dark), #3730a3);
+        }
+
+        /* ===== Embed Section ===== */
+        .embed-section {
+            margin-top: 3rem;
+            display: none;
+        }
+
+        .embed-header {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-md);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .embed-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .embed-description {
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+        }
+
+        .drive-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .drive-link:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .materials-note {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 2px solid #0ea5e9;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .materials-note-icon {
+            color: #0ea5e9;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .materials-note-text {
+            color: #0c4a6e;
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+
+        .embed-container {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-lg);
+            padding: 1.5rem;
+            overflow: hidden;
+        }
+
+        .embed-frame {
+            width: 100%;
+            height: 700px;
+            border: none;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .loading-state {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            color: var(--gray-500);
+            font-size: 1.125rem;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--gray-200);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 0.75rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background-color: var(--gray-900);
+            color: var(--gray-300);
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-title {
+            color: white;
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--gray-800);
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+
+        /* ===== Responsive Styles ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 250px;
+                background-color: rgba(10, 15, 26, 0.95);
+                backdrop-filter: blur(10px);
+                box-shadow: -2px 0 12px rgba(0, 0, 0, 0.4);
+                padding: 2rem;
+                z-index: 999;
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-button {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.8rem;
+                color: white;
+                z-index: 1000;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .form-container {
+                padding: 2rem 1.5rem;
+                margin-top: -1rem;
+            }
+
+            .form-title {
+                font-size: 1.75rem;
+            }
+
+            .embed-header {
+                padding: 1.5rem;
+            }
+
+            .embed-title {
+                font-size: 1.5rem;
+            }
+
+            .embed-frame {
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .form-title {
+                font-size: 1.5rem;
+            }
+
+            .embed-frame {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+               <div class="logo">
+          <div class="logo-icon">
+           <!-- <i class="fas fa-book"></i> -->
+          <img src="logo.png" alt="Sastra eLibrary Logo" style="width: 50px; height: auto; border-radius: 10px;" />
+
+
+          </div>
+          <span>Sastra ELibrary</span>
+        </div>
+               <ul class="nav-links" id="mobile-nav">
+  <li><a href="https://sastraelibrary.netlify.app/#">Home</a></li>
+  <li><a href="https://sastraelibrary.netlify.app/#materials">Materials</a></li>
+  <li><a href="https://sastraelibrary.netlify.app/#tools">Tools</a></li>
+  <li><a href="https://sas.sastra.edu/hallplan/">Hall Plan</a></li>
+  <li><a href="https://www.sastra.edu/downloads/menu/Academics/2024-25/MC_Academic_Calendar_2024-25.pdf">Academic Calendar</a></li>
+</ul>
+<button class="mobile-menu-button" id="menu-toggle">
+  <i class="fas fa-bars"></i>
+</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>B.TECH Study Materials</h1>
+                <p>Access comprehensive study materials for your B.TECH program. Select your branch and semester to explore organized resources.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Form Container -->
+            <div class="form-container">
+                <h2 class="form-title">Select Your Course</h2>
+                <p class="form-subtitle">Choose your program and semester to access study materials</p>
+                
+                <form id="btechForm">
+                    <div class="form-group">
+                        <label for="programBTECH" class="form-label">
+                            <i class="fas fa-graduation-cap"></i> Program
+                        </label>
+                        <select id="programBTECH" class="form-select">
+                            <option value="ECE">Electronics & Communication Engineering (ECE)</option>
+                            <option value="CSE">Computer Science Engineering (CSE)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="semesterBTECH" class="form-label">
+                            <i class="fas fa-calendar-alt"></i> Semester
+                        </label>
+                        <select id="semesterBTECH" class="form-select">
+                            <option value="1">Semester 1</option>
+                            <option value="2">Semester 2</option>
+                            <option value="3">Semester 3</option>
+                            <option value="4">Semester 4</option>
+                            <option value="5">Semester 5</option>
+                            <option value="6">Semester 6</option>
+                            <option value="7">Semester 7</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-folder-open"></i>
+                        Access Materials
+                    </button>
+                </form>
+            </div>
+
+            <!-- Embed Section -->
+            <div id="embedSection" class="embed-section">
+                <div class="embed-header">
+                    <h2 id="selectedTitle" class="embed-title"></h2>
+                    <p class="embed-description">Browse and download materials directly from Google Drive</p>
+                    <a id="directLink" href="#" target="_blank" class="drive-link">
+                        <i class="fas fa-external-link-alt"></i>
+                        Open in Google Drive
+                    </a>
+                </div>
+
+                <div class="materials-note">
+                    <div class="materials-note-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="materials-note-text">
+                        Study Materials are displayed below
+                    </div>
+                </div>
+
+                <div class="embed-container">
+                    <div id="loadingState" class="loading-state">
+                        <div class="loading-spinner"></div>
+                        Loading materials...
+                    </div>
+                    <iframe id="embedFrame" class="embed-frame" src="" style="display: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://sastraelibrary.netlify.app/#">Home</a></li>
+                        <li><a href="https://sastraelibrary.netlify.app/#materials">Study Materials</a></li>
+                        <li><a href="https://sastraelibrary.netlify.app/#tools">Academic Tools</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Academic Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://sastraelibrary.netlify.app/sgpa-grade-calculator">SGPA Calculator</a></li>
+                        <li><a href="https://sastraelibrary.netlify.app/cgpa-grade-calculator">CGPA Calculator</a></li>
+                        <li><a href="https://sastraelibrary.netlify.app/grade-estimation-calculator">Grade Estimation Calculator</a></li>
+                        <li><a href="https://sastraelibrary.netlify.app/class-skippability">Class Skippability</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">University Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://sas.sastra.edu/hallplan/">Hall Plan</a></li>
+                        <li><a href="https://www.sastra.edu">SASTRA University</a></li>
+                        <li><a href="https://www.sastra.edu/downloads/menu/Academics/2024-25/MC_Academic_Calendar_2024-25.pdf">Academic Calendar</a></li>
+                       
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:srinivaspenumarthi2244@gmail.com">srinivaspenumarthi2244@gmail.com</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Manikanta Srinivas Penumarthi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileNav = document.getElementById("mobile-nav");
+
+        menuToggle.addEventListener("click", () => {
+            mobileNav.classList.toggle("active");
+
+            menuToggle.innerHTML = mobileNav.classList.contains("active")
+                ? '<i class="fas fa-times"></i>'
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Folder links mapping
+        const folderLinks = {
+            'ECE1': '1CWkJW87GIcDjZQ22X0ohCEDj1cLnKnlx',
+            'ECE2': '1CWkJW87GIcDjZQ22X0ohCEDj1cLnKnlx',
+            'ECE3': '19U7wFLtcwEg3JOc98JzoHeAQQwYWwlrf',
+            'ECE4': '1kXEZbQ0OMmZ_s4oa0UXLdP7PplcTwQZ6',
+            'ECE5': '1gOczbjqIymFWw9NBd3Qqjq3OB_4oOZXL',
+            'ECE6': '1N1DeqkBEKLvBdEjQLkio9mvrQJ4iBcW_',
+            'ECE7': '13q8MwbJvpqcOJkJxNpDl3lH8aPlVTO7t',
+            'CSE1': '1CWkJW87GIcDjZQ22X0ohCEDj1cLnKnlx',
+            'CSE2': '1CWkJW87GIcDjZQ22X0ohCEDj1cLnKnlx',
+            'CSE3': '1MvlYBZ2QDFpcOP3FqqUapjTxCkH6SJQt',
+            'CSE4': '12lshcGhR0EvwkHgQozfVk6bp2MsCWr6S',
+            'CSE5': '1wePTXbNjTwsFbF7bVBzxH6k0RpgOCUwi',
+            'CSE6': '11X8ndrMRWlqgepbnbjEX46T08e-NEUcY',
+            'CSE7': '1-HEpyaQnS9SXSrfPAvgpUmQMFZ22xxhv'
+        };
+
+        // Form submission handler
+        document.getElementById('btechForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            
+            const program = document.getElementById('programBTECH').value;
+            const semester = document.getElementById('semesterBTECH').value;
+            const key = program + semester;
+            const folderId = folderLinks[key];
+            
+            if (folderId) {
+                const embedUrl = `https://drive.google.com/embeddedfolderview?id=${folderId}#grid`;
+                const directUrl = `https://drive.google.com/drive/folders/${folderId}`;
+                
+                // Update UI elements
+                document.getElementById('selectedTitle').textContent = `${program} Semester ${semester} Materials`;
+                document.getElementById('directLink').href = directUrl;
+                
+                // Show embed section and loading state
+                document.getElementById('embedSection').style.display = 'block';
+                document.getElementById('loadingState').style.display = 'flex';
+                document.getElementById('embedFrame').style.display = 'none';
+                
+                // Scroll to embed section
+                document.getElementById('embedSection').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+                
+                // Load iframe after a short delay for better UX
+                setTimeout(() => {
+                    document.getElementById('embedFrame').src = embedUrl;
+                    document.getElementById('embedFrame').onload = function() {
+                        document.getElementById('loadingState').style.display = 'none';
+                        document.getElementById('embedFrame').style.display = 'block';
+                    };
+                }, 500);
+                
+            } else {
+                alert('Materials for this selection are not available yet. Please check back later or contact support.');
+            }
+        });
+    </script>
+</body>
+</html>
