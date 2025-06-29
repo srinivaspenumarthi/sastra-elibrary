@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGPA Calculator - Sastra ELibrary</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f59e0b;
+            --tertiary: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --success: #10b981;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ===== Header ===== */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 40;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .logo-icon {
+            background-color: white;
+            color: var(--primary);
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            opacity: 0.9;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .mobile-menu-button {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ===== Hero Section ===== */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--primary-dark), var(--primary));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            z-index: 1;
+        }
+
+        /* ===== Main Content ===== */
+        .main-content {
+            padding: 3rem 0;
+        }
+
+        .calculator-container {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
+            margin-top: -2rem;
+            position: relative;
+            z-index: 10;
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .calculator-container:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--gray-900);
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 3rem;
+            height: 0.25rem;
+            background-color: var(--primary);
+            border-radius: 0.125rem;
+        }
+
+        /* ===== Form Controls ===== */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background-color: var(--gray-50);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+            background-color: white;
+        }
+
+        select.form-control {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-position: right 1rem center;
+            background-repeat: no-repeat;
+            background-size: 1rem;
+            padding-right: 2.5rem;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        /* ===== Subject Row Styles ===== */
+        .subject-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            align-items: end;
+            padding: 1rem;
+            background-color: var(--gray-50);
+            border-radius: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .subject-row:hover {
+            background-color: white;
+            box-shadow: var(--shadow);
+        }
+
+        /* ===== Button Styles ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            gap: 0.5rem;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-add {
+            background-color: var(--gray-100);
+            color: var(--gray-700);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-add:hover {
+            background-color: var(--gray-200);
+            transform: translateY(-1px);
+        }
+
+        .btn-remove {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-remove:hover {
+            background-color: var(--danger);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* ===== Result Box ===== */
+        .result-box {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            animation: fadeInUp 0.5s ease-out;
+            box-shadow: var(--shadow-lg);
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        .result-title {
+            font-weight: 700;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.95rem;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-summary {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .result-summary .summary-item {
+            display: inline-block;
+            margin: 0 1rem;
+            font-weight: 600;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background-color: var(--gray-900);
+            color: var(--gray-300);
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-title {
+            color: white;
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--gray-800);
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+
+        /* ===== Responsive Styles ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-button {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .subject-row {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .btn-remove {
+                grid-column: 2;
+                justify-self: end;
+            }
+
+            .result-summary .summary-item {
+                display: block;
+                margin: 0.5rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .subject-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .btn-remove {
+                grid-column: 1;
+                justify-self: center;
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <span>Sastra ELibrary</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#materials">Materials</a></li>
+                    <li><a href="#tools">Tools</a></li>
+                    <li><a href="https://sas.sastra.edu/hallplan/">Hall Plan</a></li>
+                    <li><a href="https://www.sastra.edu/downloads/menu/Academics/2024-25/MC_Academic_Calendar_2024-25.pdf">Academic Calendar</a></li>
+                </ul>
+                <button class="mobile-menu-button">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>SGPA Calculator</h1>
+                <p>Calculate your Semester Grade Point Average with ease. Add your subjects, credits, and grades to get instant results.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="calculator-container">
+                <h2 class="section-title">
+                    <i class="fas fa-calculator"></i>
+                    Calculate Your SGPA
+                </h2>
+
+                <div id="sgpaResult" class="result-box" style="display: none;"></div>
+
+                <button class="btn btn-add" id="add-subject-btn">
+                    <i class="fas fa-plus"></i> Add Subject
+                </button>
+
+                <div id="subjectFields"></div>
+
+                <button class="btn btn-primary" id="calculate-sgpa-btn">
+                    <i class="fas fa-calculator"></i> Calculate SGPA
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#materials">Study Materials</a></li>
+                        <li><a href="#tools">Academic Tools</a></li>
+                        <li><a href="#about">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Academic Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">SGPA Calculator</a></li>
+                        <li><a href="#">CGPA Calculator</a></li>
+                        <li><a href="#">Grade Estimation</a></li>
+                        <li><a href="#">Class Schedule</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">University Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://sas.sastra.edu/hallplan/">Hall Plan</a></li>
+                        <li><a href="https://www.sastra.edu">SASTRA University</a></li>
+                        <li><a href="#">Academic Calendar</a></li>
+                        <li><a href="#">Results Portal</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:info@sastraelibrary.com">info@sastraelibrary.com</a></li>
+                        <li><a href="#">Support Center</a></li>
+                        <li><a href="#">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Sastra ELibrary. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let subjectCount = 0;
+
+        function addSubject() {
+            subjectCount++;
+            const subjectFields = document.getElementById('subjectFields');
+            const subjectDiv = document.createElement('div');
+            subjectDiv.className = 'subject-row';
+            subjectDiv.id = `subject${subjectCount}`;
+            subjectDiv.innerHTML = `
+                <div>
+                    <label for="creditsSubject${subjectCount}" class="form-label">Credits</label>
+                    <input type="number" id="creditsSubject${subjectCount}" class="form-control" min="1" max="4" value="3">
+                </div>
+                <div>
+                    <label for="gradeSubject${subjectCount}" class="form-label">Grade</label>
+                    <select id="gradeSubject${subjectCount}" class="form-control">
+                        <option value="S">S (10)</option>
+                        <option value="A+">A+ (9)</option>
+                        <option value="A">A (8)</option>
+                        <option value="B">B (7)</option>
+                        <option value="C">C (6)</option>
+                        <option value="D">D (5)</option>
+                        <option value="F">F (2)</option>
+                    </select>
+                </div>
+                <button type="button" class="btn-remove" onclick="removeSubject(${subjectCount})" title="Remove Subject">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            subjectFields.appendChild(subjectDiv);
+        }
+
+        function removeSubject(id) {
+            const subject = document.getElementById(`subject${id}`);
+            if (subject && document.getElementById('subjectFields').childElementCount > 1) {
+                subject.remove();
+            } else {
+                alert("You must have at least one subject.");
+            }
+        }
+
+        function calculateSgpa() {
+            let totalCredits = 0;
+            let totalGradePoints = 0;
+            const resultDiv = document.getElementById('sgpaResult');
+            const subjectDivs = document.querySelectorAll('[id^="subject"]');
+
+            if (subjectDivs.length === 0) {
+                alert("Please add at least one subject.");
+                return;
+            }
+
+            let resultHTML = '';
+            let subjectIndex = 1;
+
+            for (const subjectDiv of subjectDivs) {
+                const id = subjectDiv.id.replace('subject', '');
+                const creditsInput = document.getElementById(`creditsSubject${id}`);
+                const gradeSelect = document.getElementById(`gradeSubject${id}`);
+
+                if (!creditsInput || !gradeSelect) continue;
+
+                const credits = parseInt(creditsInput.value);
+                const grade = gradeSelect.value;
+
+                if (isNaN(credits) || credits < 1) {
+                    alert(`Please enter valid credits for subject ${subjectIndex}.`);
+                    return;
+                }
+
+                const gradePoints = getGradePoints(grade);
+                const subjectPoints = credits * gradePoints;
+
+                totalCredits += credits;
+                totalGradePoints += subjectPoints;
+
+                resultHTML += `
+                    <div class="result-item">
+                        <span>Subject ${subjectIndex} (${credits} credits, Grade ${grade})</span>
+                        <span><strong>${subjectPoints} points</strong></span>
+                    </div>
+                `;
+                subjectIndex++;
+            }
+
+            const sgpa = totalGradePoints / totalCredits;
+
+            resultHTML = `
+                <div class="result-title">Your SGPA: ${sgpa.toFixed(2)}</div>
+                <div class="result-summary">
+                    <div class="summary-item">
+                        <i class="fas fa-book"></i> Total Credits: ${totalCredits}
+                    </div>
+                    <div class="summary-item">
+                        <i class="fas fa-star"></i> Total Grade Points: ${totalGradePoints}
+                    </div>
+                </div>
+                <hr style="margin: 1rem 0; border: none; height: 1px; background: rgba(255,255,255,0.2);">
+                ${resultHTML}
+            `;
+
+            resultDiv.innerHTML = resultHTML;
+            resultDiv.style.display = 'block';
+            
+            // Smooth scroll to results
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function getGradePoints(grade) {
+            const gradePoints = {
+                'S': 10,
+                'A+': 9,
+                'A': 8,
+                'B': 7,
+                'C': 6,
+                'D': 5,
+                'F': 2
+            };
+            return gradePoints[grade] || 0;
+        }
+
+        // Event listeners
+        document.getElementById('add-subject-btn').addEventListener('click', addSubject);
+        document.getElementById('calculate-sgpa-btn').addEventListener('click', calculateSgpa);
+
+        // Add first subject on page load
+        window.addEventListener('load', () => {
+            addSubject();
+        });
+    </script>
+</body>
+</html>
