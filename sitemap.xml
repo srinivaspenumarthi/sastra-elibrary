@@ -1,8 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Home -->
   <url>
     <loc>https://sastraelibrary.netlify.app/</loc>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
+
+  <!-- SGPA Grade Calculator -->
+  <url>
+    <loc>https://sastraelibrary.netlify.app/sgpa-grade-calculator.html</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- CGPA Grade Calculator -->
+  <url>
+    <loc>https://sastraelibrary.netlify.app/cgpa-grade-calculator.html</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Grade Estimation Calculator -->
+  <url>
+    <loc>https://sastraelibrary.netlify.app/grade-estimation-calculator.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Class Skippability -->
+  <url>
+    <loc>https://sastraelibrary.netlify.app/class-skippability.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- BTECH Materials -->
+  <url>
+    <loc>https://sastraelibrary.netlify.app/btech-materials.html</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Placement Materials -->
+  <url>
+    <loc>https://sastraelibrary.netlify.app/placement-materials.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Hall Plan -->
+  <url>
+    <loc>https://sastraelibrary.netlify.app/hallplan.html</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Academic Updates -->
+  <url>
+    <loc>https://sastraelibrary.netlify.app/academic-updates.html</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Academic Calendar -->
+  <url>
+    <loc>https://sastraelibrary.netlify.app/academic-calendar.html</loc>
+    <priority>0.7</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+
 </urlset>
