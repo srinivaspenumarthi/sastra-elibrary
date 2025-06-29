@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SGPA Calculator - Sastra ELibrary</title>
+    <title>CGPA Calculator - Sastra ELibrary</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -234,19 +234,8 @@
             background-color: white;
         }
 
-        select.form-control {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-            background-position: right 1rem center;
-            background-repeat: no-repeat;
-            background-size: 1rem;
-            padding-right: 2.5rem;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-        }
-
-        /* ===== Subject Row Styles ===== */
-        .subject-row {
+        /* ===== Semester Row Styles ===== */
+        .semester-row {
             display: grid;
             grid-template-columns: 1fr 1fr auto;
             gap: 1rem;
@@ -258,7 +247,7 @@
             transition: all 0.2s ease;
         }
 
-        .subject-row:hover {
+        .semester-row:hover {
             background-color: white;
             box-shadow: var(--shadow);
         }
@@ -319,6 +308,15 @@
             background-color: var(--danger);
             color: white;
             transform: translateY(-1px);
+        }
+
+        /* ===== Number of Semesters Input ===== */
+        .semesters-input {
+            background-color: var(--gray-50);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--gray-200);
         }
 
         /* ===== Result Box ===== */
@@ -433,39 +431,39 @@
         /* ===== Responsive Styles ===== */
         @media (max-width: 768px) {
             .nav-links {
-    display: none;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 250px;
-    background-color: rgba(10, 15, 26, 0.95); /* matte dark glass */
-    backdrop-filter: blur(10px);
-    box-shadow: -2px 0 12px rgba(0, 0, 0, 0.4);
-    padding: 2rem;
-    z-index: 999;
-    transition: transform 0.3s ease;
-  }
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 250px;
+                background-color: rgba(10, 15, 26, 0.95);
+                backdrop-filter: blur(10px);
+                box-shadow: -2px 0 12px rgba(0, 0, 0, 0.4);
+                padding: 2rem;
+                z-index: 999;
+                transition: transform 0.3s ease;
+            }
 
-  .nav-links.active {
-    display: flex;
-  }
+            .nav-links.active {
+                display: flex;
+            }
 
-  .mobile-menu-button {
-    display: block;
-    background: none;
-    border: none;
-    font-size: 1.8rem;
-    color: white;
-    z-index: 1000;
-  }
+            .mobile-menu-button {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.8rem;
+                color: white;
+                z-index: 1000;
+            }
 
             .hero h1 {
                 font-size: 2.5rem;
             }
 
-            .subject-row {
+            .semester-row {
                 grid-template-columns: 1fr 1fr;
                 gap: 1rem;
             }
@@ -482,7 +480,7 @@
         }
 
         @media (max-width: 480px) {
-            .subject-row {
+            .semester-row {
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
@@ -504,25 +502,22 @@
     <header>
         <div class="container">
             <nav>
-               <div class="logo">
-          <div class="logo-icon">
-           <!-- <i class="fas fa-book"></i> -->
-          <img src="logo.png" alt="Sastra eLibrary Logo" style="width: 50px; height: auto; border-radius: 10px;" />
-
-
-          </div>
-          <span>Sastra ELibrary</span>
-        </div>
-               <ul class="nav-links" id="mobile-nav">
-  <li><a href="https://sastraelibrary.netlify.app/#">Home</a></li>
-  <li><a href="https://sastraelibrary.netlify.app/#materials">Materials</a></li>
-  <li><a href="https://sastraelibrary.netlify.app/#tools">Tools</a></li>
-  <li><a href="https://sas.sastra.edu/hallplan/">Hall Plan</a></li>
-  <li><a href="https://www.sastra.edu/downloads/menu/Academics/2024-25/MC_Academic_Calendar_2024-25.pdf">Academic Calendar</a></li>
-</ul>
-<button class="mobile-menu-button" id="menu-toggle">
-  <i class="fas fa-bars"></i>
-</button>
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="logo.png" alt="Sastra eLibrary Logo" style="width: 50px; height: auto; border-radius: 10px;" />
+                    </div>
+                    <span>Sastra ELibrary</span>
+                </div>
+                <ul class="nav-links" id="mobile-nav">
+                    <li><a href="https://sastraelibrary.netlify.app/#">Home</a></li>
+                    <li><a href="https://sastraelibrary.netlify.app/#materials">Materials</a></li>
+                    <li><a href="https://sastraelibrary.netlify.app/#tools">Tools</a></li>
+                    <li><a href="https://sas.sastra.edu/hallplan/">Hall Plan</a></li>
+                    <li><a href="https://www.sastra.edu/downloads/menu/Academics/2024-25/MC_Academic_Calendar_2024-25.pdf">Academic Calendar</a></li>
+                </ul>
+                <button class="mobile-menu-button" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
             </nav>
         </div>
     </header>
@@ -532,8 +527,8 @@
         <div class="hero-bg"></div>
         <div class="container">
             <div class="hero-content">
-                <h1>SGPA Calculator</h1>
-                <p>Calculate your Semester Grade Point Average with ease. Add your subjects, credits, and grades to get instant results.</p>
+                <h1>CGPA Calculator</h1>
+                <p>Calculate your Cumulative Grade Point Average across all semesters. Enter your semester credits and SGPA to get instant results.</p>
             </div>
         </div>
     </section>
@@ -544,19 +539,20 @@
             <div class="calculator-container">
                 <h2 class="section-title">
                     <i class="fas fa-calculator"></i>
-                    Calculate Your SGPA
+                    Calculate Your CGPA
                 </h2>
 
-                <div id="sgpaResult" class="result-box" style="display: none;"></div>
+                <div id="cgpaResult" class="result-box" style="display: none;"></div>
 
-                <button class="btn btn-add" id="add-subject-btn">
-                    <i class="fas fa-plus"></i> Add Subject
-                </button>
+                <div class="semesters-input">
+                    <label for="numSemesters" class="form-label">Number of Semesters</label>
+                    <input type="number" id="numSemesters" class="form-control" min="1" max="8" value="1" title="Enter number of semesters (1–8)">
+                </div>
 
-                <div id="subjectFields"></div>
+                <div id="semesterFields"></div>
 
-                <button class="btn btn-primary" id="calculate-sgpa-btn">
-                    <i class="fas fa-calculator"></i> Calculate SGPA
+                <button class="btn btn-primary" id="calculate-cgpa-btn">
+                    <i class="fas fa-calculator"></i> Calculate CGPA
                 </button>
             </div>
         </div>
@@ -589,14 +585,12 @@
                         <li><a href="https://sas.sastra.edu/hallplan/">Hall Plan</a></li>
                         <li><a href="https://www.sastra.edu">SASTRA University</a></li>
                         <li><a href="https://www.sastra.edu/downloads/menu/Academics/2024-25/MC_Academic_Calendar_2024-25.pdf">Academic Calendar</a></li>
-                       
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3 class="footer-title">Contact</h3>
                     <ul class="footer-links">
                         <li><a href="mailto:srinivaspenumarthi2244@gmail.com">srinivaspenumarthi2244@gmail.com</a></li>
-                        
                     </ul>
                 </div>
             </div>
@@ -606,151 +600,128 @@
         </div>
     </footer>
 
-   <script>
+    <script>
         const menuToggle = document.getElementById("menu-toggle");
-  const mobileNav = document.getElementById("mobile-nav");
+        const mobileNav = document.getElementById("mobile-nav");
 
-  menuToggle.addEventListener("click", () => {
-    mobileNav.classList.toggle("active");
+        menuToggle.addEventListener("click", () => {
+            mobileNav.classList.toggle("active");
 
-    menuToggle.innerHTML = mobileNav.classList.contains("active")
-      ? '<i class="fas fa-times"></i>'
-      : '<i class="fas fa-bars"></i>';
-  });
-    let subjectCount = 0;
+            menuToggle.innerHTML = mobileNav.classList.contains("active")
+                ? '<i class="fas fa-times"></i>'
+                : '<i class="fas fa-bars"></i>';
+        });
 
-    function addSubject() {
-        subjectCount++;
-        const subjectFields = document.getElementById('subjectFields');
-        const subjectDiv = document.createElement('div');
-        subjectDiv.className = 'subject-row';
-        subjectDiv.id = `subject${subjectCount}`;
-        subjectDiv.innerHTML = `
-            <div>
-                <label for="creditsSubject${subjectCount}" class="form-label">Credits</label>
-                <input type="number" id="creditsSubject${subjectCount}" class="form-control" min="1" max="4" value="3" title="Enter course credits (1–4)">
-            </div>
-            <div>
-                <label for="gradeSubject${subjectCount}" class="form-label">Grade</label>
-                <select id="gradeSubject${subjectCount}" class="form-control" title="Select your grade for this subject">
-                    <option value="S">S (10)</option>
-                    <option value="A+">A+ (9)</option>
-                    <option value="A">A (8)</option>
-                    <option value="B">B (7)</option>
-                    <option value="C">C (6)</option>
-                    <option value="D">D (5)</option>
-                    <option value="F">F (2)</option>
-                </select>
-            </div>
-            <button type="button" class="btn-remove" onclick="removeSubject(${subjectCount})" title="Remove this subject">
-                <i class="fas fa-times"></i>
-            </button>
-        `;
-        subjectFields.appendChild(subjectDiv);
-    }
+        function updateSemesters() {
+            const numSemesters = parseInt(document.getElementById('numSemesters').value);
+            const semesterFields = document.getElementById('semesterFields');
+            semesterFields.innerHTML = '';
 
-    function removeSubject(id) {
-        const subject = document.getElementById(`subject${id}`);
-        if (subject && document.getElementById('subjectFields').childElementCount > 1) {
-            subject.remove();
-        } else {
-            alert("At least one subject is required.");
-        }
-    }
-
-    function calculateSgpa() {
-        let totalCredits = 0;
-        let totalGradePoints = 0;
-        const resultDiv = document.getElementById('sgpaResult');
-        const subjectDivs = document.querySelectorAll('[id^="subject"]');
-
-        if (subjectDivs.length === 0) {
-            alert("Please add at least one subject.");
-            return;
+            for (let i = 1; i <= numSemesters; i++) {
+                const semesterDiv = document.createElement('div');
+                semesterDiv.className = 'semester-row';
+                semesterDiv.id = `semester${i}`;
+                semesterDiv.innerHTML = `
+                    <div>
+                        <label for="creditsSemester${i}" class="form-label">Credits - Semester ${i}</label>
+                        <input type="number" id="creditsSemester${i}" class="form-control" min="1" max="30" value="20" title="Enter total credits for semester ${i}">
+                    </div>
+                    <div>
+                        <label for="sgpaSemester${i}" class="form-label">SGPA - Semester ${i}</label>
+                        <input type="number" id="sgpaSemester${i}" class="form-control" min="0" max="10" step="0.01" value="8.0" title="Enter SGPA for semester ${i}">
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 1.5rem; color: var(--primary); font-weight: 600;">${i}</span>
+                    </div>
+                `;
+                semesterFields.appendChild(semesterDiv);
+            }
         }
 
-        let resultHTML = '';
-        let subjectIndex = 1;
+        function calculateCGPA() {
+            const numSemesters = parseInt(document.getElementById('numSemesters').value);
+            let totalCredits = 0;
+            let totalGradePoints = 0;
+            const resultDiv = document.getElementById('cgpaResult');
 
-        for (const subjectDiv of subjectDivs) {
-            const id = subjectDiv.id.replace('subject', '');
-            const creditsInput = document.getElementById(`creditsSubject${id}`);
-            const gradeSelect = document.getElementById(`gradeSubject${id}`);
-
-            if (!creditsInput || !gradeSelect) continue;
-
-            const credits = parseInt(creditsInput.value);
-            const grade = gradeSelect.value;
-
-            if (isNaN(credits) || credits < 1 || credits > 10) {
-                alert(`Enter valid credits (1–10) for Subject ${subjectIndex}`);
+            if (numSemesters < 1) {
+                alert("Please enter at least 1 semester.");
                 return;
             }
 
-            const gradePoints = getGradePoints(grade);
-            const subjectPoints = credits * gradePoints;
+            let resultHTML = '';
 
-            totalCredits += credits;
-            totalGradePoints += subjectPoints;
+            for (let i = 1; i <= numSemesters; i++) {
+                const creditsInput = document.getElementById(`creditsSemester${i}`);
+                const sgpaInput = document.getElementById(`sgpaSemester${i}`);
 
-            resultHTML += `
-                <div class="result-item">
-                    <span>Subject ${subjectIndex} (${credits} credits, Grade ${grade})</span>
-                    <span><strong>${subjectPoints} points</strong></span>
+                if (!creditsInput || !sgpaInput) continue;
+
+                const credits = parseInt(creditsInput.value);
+                const sgpa = parseFloat(sgpaInput.value);
+
+                if (isNaN(credits) || credits < 1 || credits > 50) {
+                    alert(`Enter valid credits (1–50) for Semester ${i}`);
+                    return;
+                }
+
+                if (isNaN(sgpa) || sgpa < 0 || sgpa > 10) {
+                    alert(`Enter valid SGPA (0–10) for Semester ${i}`);
+                    return;
+                }
+
+                const semesterPoints = credits * sgpa;
+                totalCredits += credits;
+                totalGradePoints += semesterPoints;
+
+                resultHTML += `
+                    <div class="result-item">
+                        <span>Semester ${i} (${credits} credits, SGPA ${sgpa})</span>
+                        <span><strong>${semesterPoints.toFixed(2)} points</strong></span>
+                    </div>
+                `;
+            }
+
+            const cgpa = totalGradePoints / totalCredits;
+
+            resultHTML = `
+                <div class="result-title">🎓 CGPA: ${cgpa.toFixed(4)}</div>
+                <div class="result-summary">
+                    <div class="summary-item">
+                        <i class="fas fa-book"></i> <strong>Total Credits:</strong> ${totalCredits}
+                    </div>
+                    <div class="summary-item">
+                        <i class="fas fa-star"></i> <strong>Total Grade Points:</strong> ${totalGradePoints.toFixed(2)}
+                    </div>
+                    <div class="summary-item">
+                        <i class="fas fa-graduation-cap"></i> <strong>Semesters:</strong> ${numSemesters}
+                    </div>
                 </div>
+                <hr style="margin: 1rem 0; border: none; height: 1px; background: rgba(255,255,255,0.2);">
+                ${resultHTML}
             `;
-            subjectIndex++;
+
+            resultDiv.innerHTML = resultHTML;
+            resultDiv.style.display = 'block';
+            resultDiv.style.opacity = 0;
+
+            // Animate in
+            setTimeout(() => {
+                resultDiv.style.transition = 'opacity 0.6s ease-in-out';
+                resultDiv.style.opacity = 1;
+                resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50);
         }
 
-        const sgpa = totalGradePoints / totalCredits;
+        // Bind events
+        document.getElementById('numSemesters').addEventListener('change', updateSemesters);
+        document.getElementById('numSemesters').addEventListener('input', updateSemesters);
+        document.getElementById('calculate-cgpa-btn').addEventListener('click', calculateCGPA);
 
-        resultHTML = `
-            <div class="result-title">🎓 SGPA: ${sgpa.toFixed(4)}</div>
-            <div class="result-summary">
-                <div class="summary-item">
-                    <i class="fas fa-book"></i> <strong>Total Credits:</strong> ${totalCredits}
-                </div>
-                <div class="summary-item">
-                    <i class="fas fa-star"></i> <strong>Total Grade Points:</strong> ${totalGradePoints}
-                </div>
-            </div>
-            <hr style="margin: 1rem 0; border: none; height: 1px; background: rgba(255,255,255,0.2);">
-            ${resultHTML}
-        `;
-
-        resultDiv.innerHTML = resultHTML;
-        resultDiv.style.display = 'block';
-        resultDiv.style.opacity = 0;
-
-        // Animate in
-        setTimeout(() => {
-            resultDiv.style.transition = 'opacity 0.6s ease-in-out';
-            resultDiv.style.opacity = 1;
-            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 50);
-    }
-
-    function getGradePoints(grade) {
-        const gradePoints = {
-            'S': 10,
-            'A+': 9,
-            'A': 8,
-            'B': 7,
-            'C': 6,
-            'D': 5,
-            'F': 2
-        };
-        return gradePoints[grade] || 0;
-    }
-
-    // Bind buttons
-    document.getElementById('add-subject-btn').addEventListener('click', addSubject);
-    document.getElementById('calculate-sgpa-btn').addEventListener('click', calculateSgpa);
-
-    // First subject by default
-    window.addEventListener('load', () => {
-        addSubject();
-    });
-</script>
+        // Initialize on load
+        window.addEventListener('load', () => {
+            updateSemesters();
+        });
+    </script>
 </body>
 </html>
