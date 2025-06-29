@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Skippability Calculator - Sastra ELibrary</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f59e0b;
+            --tertiary: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --success: #10b981;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ===== Header ===== */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 40;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .logo-icon {
+            background-color: white;
+            color: var(--primary);
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            opacity: 0.9;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .mobile-menu-button {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ===== Hero Section ===== */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--primary-dark), var(--primary));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            z-index: 1;
+        }
+
+        /* ===== Main Content ===== */
+        .main-content {
+            padding: 3rem 0;
+        }
+
+        .calculator-container {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
+            margin-top: -2rem;
+            position: relative;
+            z-index: 10;
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .calculator-container:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--gray-900);
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 3rem;
+            height: 0.25rem;
+            background-color: var(--primary);
+            border-radius: 0.125rem;
+        }
+
+        /* ===== Form Controls ===== */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background-color: var(--gray-50);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+            background-color: white;
+        }
+
+        /* ===== Input Row Styles ===== */
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--gray-50);
+            border-radius: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .input-row:hover {
+            background-color: white;
+            box-shadow: var(--shadow);
+        }
+
+        /* ===== Button Styles ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            gap: 0.5rem;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ===== Result Box ===== */
+        .result-box {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            animation: fadeInUp 0.5s ease-out;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .result-box.danger {
+            background: linear-gradient(135deg, var(--danger), #dc2626);
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        .result-title {
+            font-weight: 700;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.95rem;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-summary {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .result-summary .summary-item {
+            display: inline-block;
+            margin: 0 1rem;
+            font-weight: 600;
+        }
+
+        .skip-highlight {
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .no-skip-message {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background-color: var(--gray-900);
+            color: var(--gray-300);
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-title {
+            color: white;
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--gray-800);
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+
+        /* ===== Responsive Styles ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 250px;
+                background-color: rgba(10, 15, 26, 0.95);
+                backdrop-filter: blur(10px);
+                box-shadow: -2px 0 12px rgba(0, 0, 0, 0.4);
+                padding: 2rem;
+                z-index: 999;
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-button {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.8rem;
+                color: white;
+                z-index: 1000;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .input-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .result-summary .summary-item {
+                display: block;
+                margin: 0.5rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .input-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+               <div class="logo">
+          <div class="logo-icon">
+           <!-- <i class="fas fa-book"></i> -->
+          <img src="logo.png" alt="Sastra eLibrary Logo" style="width: 50px; height: auto; border-radius: 10px;" />
+
+
+          </div>
+          <span>Sastra ELibrary</span>
+        </div>
+               <ul class="nav-links" id="mobile-nav">
+  <li><a href="https://sastraelibrary.netlify.app/#">Home</a></li>
+  <li><a href="https://sastraelibrary.netlify.app/#materials">Materials</a></li>
+  <li><a href="https://sastraelibrary.netlify.app/#tools">Tools</a></li>
+  <li><a href="https://sas.sastra.edu/hallplan/">Hall Plan</a></li>
+  <li><a href="https://www.sastra.edu/downloads/menu/Academics/2024-25/MC_Academic_Calendar_2024-25.pdf">Academic Calendar</a></li>
+</ul>
+<button class="mobile-menu-button" id="menu-toggle">
+  <i class="fas fa-bars"></i>
+</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Class Skippability Calculator</h1>
+                <p>Calculate how many more classes you can skip while maintaining minimum attendance requirements based on your credit load.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="calculator-container">
+                <h2 class="section-title">
+                    <i class="fas fa-user-clock"></i>
+                    Calculate Skippable Classes
+                </h2>
+
+                <div id="skippabilityResult" class="result-box" style="display: none;"></div>
+
+                <div class="input-row">
+                    <div class="form-group">
+                        <label for="totalCredits" class="form-label">Total Credits</label>
+                        <input type="number" id="totalCredits" class="form-control" min="18" max="25" placeholder="e.g., 20" title="Enter your total semester credits (18-25)">
+                    </div>
+                    <div class="form-group">
+                        <label for="skippedClasses" class="form-label">Classes Already Skipped</label>
+                        <input type="number" id="skippedClasses" class="form-control" min="0" placeholder="e.g., 8" title="Enter number of classes you've already skipped">
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" id="calculate-skippability-btn">
+                    <i class="fas fa-calculator"></i> Calculate Skippability
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://sastraelibrary.netlify.app/#">Home</a></li>
+                        <li><a href="https://sastraelibrary.netlify.app/#materials">Study Materials</a></li>
+                        <li><a href="https://sastraelibrary.netlify.app/#tools">Academic Tools</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Academic Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://sastraelibrary.netlify.app/sgpa-grade-calculator">SGPA Calculator</a></li>
+                        <li><a href="https://sastraelibrary.netlify.app/cgpa-grade-calculator">CGPA Calculator</a></li>
+                        <li><a href="https://sastraelibrary.netlify.app/grade-estimation-calculator">Grade Estimation Calculator</a></li>
+                        <li><a href="https://sastraelibrary.netlify.app/class-skippability">Class Skippability</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">University Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://sas.sastra.edu/hallplan/">Hall Plan</a></li>
+                        <li><a href="https://www.sastra.edu">SASTRA University</a></li>
+                        <li><a href="https://www.sastra.edu/downloads/menu/Academics/2024-25/MC_Academic_Calendar_2024-25.pdf">Academic Calendar</a></li>
+                       
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:srinivaspenumarthi2244@gmail.com">srinivaspenumarthi2244@gmail.com</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Manikanta Srinivas Penumarthi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+   <script>
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileNav = document.getElementById("mobile-nav");
+
+        menuToggle.addEventListener("click", () => {
+            mobileNav.classList.toggle("active");
+
+            menuToggle.innerHTML = mobileNav.classList.contains("active")
+                ? '<i class="fas fa-times"></i>'
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        function calculateSkippability() {
+            const creditsInput = document.getElementById('totalCredits');
+            const skippedClassesInput = document.getElementById('skippedClasses');
+            const resultDiv = document.getElementById('skippabilityResult');
+            
+            const credits = parseInt(creditsInput.value);
+            const skippedClasses = parseInt(skippedClassesInput.value);
+
+            if (isNaN(credits) || credits < 18 || credits > 25) {
+                alert('Please enter valid credits between 18 and 25.');
+                return;
+            }
+
+            if (isNaN(skippedClasses) || skippedClasses < 0) {
+                alert('Please enter a valid number of skipped classes (0 or more).');
+                return;
+            }
+
+            // Maximum skippable classes mapping based on credits
+            const maxSkippableClasses = {
+                18: 57,
+                19: 60,
+                20: 64,
+                21: 67,
+                22: 70,
+                23: 73,
+                24: 76,
+                25: 80
+            };
+
+            const maxClasses = maxSkippableClasses[credits];
+            const remainingSkips = Math.max(0, maxClasses - skippedClasses);
+
+            let resultHTML = '';
+
+            if (remainingSkips <= 0) {
+                resultHTML = `
+                    <div class="no-skip-message">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <br><br>
+                        <strong>You can't skip any more classes!</strong>
+                        <br><br>
+                        You have already reached or exceeded your maximum skippable limit.
+                    </div>
+                    <div class="result-item">
+                        <span><i class="fas fa-ban"></i> Total Skippable Classes</span>
+                        <span><strong>${maxClasses} classes</strong></span>
+                    </div>
+                    <div class="result-item">
+                        <span><i class="fas fa-times-circle"></i> Already Skipped</span>
+                        <span><strong>${skippedClasses} classes</strong></span>
+                    </div>
+                `;
+                resultDiv.className = 'result-box danger';
+            } else {
+                resultHTML = `
+                    <div class="result-item">
+                        <span><i class="fas fa-ban"></i> Total Skippable Classes</span>
+                        <span><strong>${maxClasses} classes</strong></span>
+                    </div>
+                    <div class="result-item">
+                        <span><i class="fas fa-times-circle"></i> Already Skipped</span>
+                        <span><strong>${skippedClasses} classes</strong></span>
+                    </div>
+                    <div class="result-item">
+                        <span><i class="fas fa-check-circle"></i> You Can Still Skip</span>
+                        <span class="skip-highlight"><strong>${remainingSkips} more classes</strong></span>
+                    </div>
+                `;
+                resultDiv.className = 'result-box';
+            }
+
+            resultDiv.innerHTML = resultHTML;
+            resultDiv.style.display = 'block';
+            resultDiv.style.opacity = 0;
+
+            // Animate in
+            setTimeout(() => {
+                resultDiv.style.transition = 'opacity 0.6s ease-in-out';
+                resultDiv.style.opacity = 1;
+                resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50);
+        }
+
+        // Bind button
+        document.getElementById('calculate-skippability-btn').addEventListener('click', calculateSkippability);
+
+        // Allow Enter key to trigger calculation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                calculateSkippability();
+            }
+        });
+</script>
+</body>
+</html>
