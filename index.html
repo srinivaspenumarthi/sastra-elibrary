@@ -1994,13 +1994,18 @@
   });
 
   // Update online count in real-time
-  usersRef.on("value", (snapshot) => {
-    const count = snapshot.numChildren();
-    const badge = document.getElementById("onlineCount");
-    if (badge) {
-      badge.textContent = count;
-    }
-  });
+ // Generate a consistent random boost for this session
+const randomBoost = Math.floor(Math.random() * 11) + 10; // 10–20
+
+usersRef.on("value", (snapshot) => {
+  const count = snapshot.numChildren();
+  const displayCount = count + randomBoost;
+
+  const badge = document.getElementById("onlineCount");
+  if (badge) {
+    badge.textContent = displayCount;
+  }
+});
 </script>
 </body>
 </html>
