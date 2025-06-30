@@ -1939,29 +1939,52 @@
   </script>
 
 
-<!-- 👥 Online Users Floating Badge -->
-<div id="online-badge" style="
-  position: fixed;
-  bottom: 0.75rem;
-  right: 0.75rem;
-  background: linear-gradient(to bottom, var(--primary-dark), var(--primary));
-  color: white;
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
-  font-weight: 500;
-  font-size: 0.7rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-family: 'Inter', sans-serif;
-  line-height: 1;
-  opacity: 0.95;
-  transition: opacity 0.3s ease;
-">
-  <span style="font-size: 0.85rem;">👥</span>
-  <span id="onlineCount" style="font-weight: 600;">...</span>
+<style>
+  #online-badge {
+    position: fixed;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    background: linear-gradient(to bottom, var(--primary-dark), var(--primary));
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 0.75rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Inter', sans-serif;
+    line-height: 1;
+    opacity: 0.95;
+    transition: opacity 0.3s ease;
+  }
+
+  #online-badge span.icon {
+    font-size: 0.9rem;
+  }
+
+  #online-badge span#onlineCount {
+    font-weight: 600;
+  }
+
+  @media (min-width: 768px) {
+    /* For tablets and laptops */
+    #online-badge {
+      padding: 0.55rem 1.2rem;
+      font-size: 0.85rem;
+    }
+
+    #online-badge span.icon {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<div id="online-badge">
+  <span class="icon">👥</span>
+  <span id="onlineCount">...</span>
   <span>Online</span>
 </div>
 <!-- Firebase SDKs -->
