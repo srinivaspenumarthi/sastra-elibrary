@@ -1033,11 +1033,6 @@
       <div class="hero-content">
         <h1>Your Gateway to Smart Learning</h1>
         <p>Access a wide range of materials, calculators, and resources to support your academic success at Sastra University.</p>
-        <li class="nav-online" style="margin-left: auto; list-style-type: none; display: inline;">
-  <span style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); padding: 0.25rem 0.75rem; border-radius: 1rem; color: white; font-weight: 500;">
-    👥 <span id="onlineCount">...</span> Online
-  </span>
-</li>
       </div>
     </div>
   </section>
@@ -1942,6 +1937,62 @@
       }
     });
   </script>
-  
+  <!-- 👥 Students Online Floating Badge -->
+<div id="online-badge" style="
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: linear-gradient(135deg, #317EFB, #1b5edb);
+  color: white;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 9999;
+">
+  👥 <span id="onlineCount">...</span> Online
+</div>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+<!-- Firebase Realtime Presence Script -->
+<script>
+  // Your Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyAJUmTbRhRWDQl3LHzyWNs-XZbBb8khDdc",
+    authDomain: "sastra-elibrary.firebaseapp.com",
+    databaseURL: "https://sastra-elibrary-default-rtdb.firebaseio.com",
+    projectId: "sastra-elibrary",
+    storageBucket: "sastra-elibrary.appspot.com",
+    messagingSenderId: "735544963978",
+    appId: "1:735544963978:web:24357993ce86d5b04d8e73",
+    measurementId: "G-8V992CRZ1R"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  // Unique ID for this user session
+  const userId = "user_" + Date.now() + "_" + Math.random().toString(36).substr(2, 6);
+  const usersRef = db.ref("onlineUsers");
+
+  // Mark user online
+  usersRef.child(userId).set(true);
+
+  // Remove user when they close or reload the page
+  window.addEventListener("beforeunload", () => {
+    usersRef.child(userId).remove();
+  });
+
+  // Listen for changes in user count
+  usersRef.on("value", (snapshot) => {
+    const count = snapshot.numChildren();
+    document.getElementById("onlineCount").innerText = count;
+  });
+</script>
 </body>
 </html>
