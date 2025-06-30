@@ -1954,30 +1954,35 @@
   👥 <span id="onlineCount">...</span> Online
 </div>
 
-<!-- 👥 Students Online Floating Badge -->
+<!-- 👥 Online Users Floating Badge -->
 <div id="online-badge" style="
   position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  background: linear-gradient(135deg, #317EFB, #1b5edb);
+  bottom: 1rem;
+  right: 1rem;
+  background: linear-gradient(to bottom, var(--primary-dark), var(--primary));
   color: white;
-  padding: 0.5rem 1.1rem;
+  padding: 0.4rem 0.9rem;
   border-radius: 999px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-weight: 500;
+  font-size: 0.8rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Inter', sans-serif;
 ">
-  👥 <span id="onlineCount">...</span> Online
+  <span style="font-size: 1rem;">👥</span>
+  <span id="onlineCount">...</span> Online
 </div>
 
 <!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
-<!-- Firebase Presence Logic -->
+<!-- ✅ Firebase Presence Logic -->
 <script>
-  // ✅ Firebase configuration
+  // Firebase Config
   const firebaseConfig = {
     apiKey: "AIzaSyAJUmTbRhRWDQl3LHzyWNs-XZbBb8khDdc",
     authDomain: "sastra-elibrary.firebaseapp.com",
@@ -1989,23 +1994,27 @@
     measurementId: "G-8V992CRZ1R"
   };
 
-  // ✅ Initialize Firebase
+  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
 
-  // ✅ Generate a unique session ID
+  // Unique session ID
   const userId = "user_" + Date.now() + "_" + Math.random().toString(36).substring(2, 10);
   const usersRef = db.ref("onlineUsers");
   const userRef = usersRef.child(userId);
 
-  // ✅ Set user online and schedule automatic removal on disconnect
-  userRef.set(true);
-  userRef.onDisconnect().remove();
+  // Set user as online and remove on disconnect
+  userRef.set(true).then(() => {
+    userRef.onDisconnect().remove();
+  });
 
-  // ✅ Listen for online user count changes
+  // Update online count in real-time
   usersRef.on("value", (snapshot) => {
     const count = snapshot.numChildren();
-    document.getElementById("onlineCount").innerText = count;
+    const badge = document.getElementById("onlineCount");
+    if (badge) {
+      badge.textContent = count;
+    }
   });
 </script>
 </body>
