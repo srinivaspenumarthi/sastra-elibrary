@@ -1993,13 +1993,9 @@
     userRef.onDisconnect().remove();
   });
 
-  // Update online count in real-time
- // Generate a consistent random boost for this session
-const randomBoost = Math.floor(Math.random() * 11) + 10; // 10–20
-
-usersRef.on("value", (snapshot) => {
+ usersRef.on("value", (snapshot) => {
   const count = snapshot.numChildren();
-  const displayCount = count + randomBoost;
+  const displayCount = count + 10;
 
   const badge = document.getElementById("onlineCount");
   if (badge) {
