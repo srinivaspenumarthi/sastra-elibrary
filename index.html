@@ -2021,7 +2021,7 @@
 
  usersRef.on("value", (snapshot) => {
   const count = snapshot.numChildren();
-  const displayCount = count + 10;
+  const displayCount = count;
 
   const badge = document.getElementById("onlineCount");
   if (badge) {
