@@ -1067,63 +1067,64 @@
 
 
  .logo-wrapper {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      animation: fadeOutWrapper 4s ease-in-out forwards;
-      animation-delay: 1s;
-    }
+  position: absolute; /* changed from fixed to absolute */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeOutWrapper 4s ease-in-out forwards;
+  animation-delay: 1s;
+  pointer-events: none; /* avoids interaction issues */
+}
 
-    .logoanime {
-      width: 150px;
-      height: auto;
-      animation: scaleAndFade 4s ease-in-out forwards;
-      animation-delay: 1s;
-    }
+.logoanime {
+  width: 150px;
+  height: auto;
+  animation: scaleAndFade 4s ease-in-out forwards;
+  animation-delay: 1s;
+}
 
-    @keyframes scaleAndFade {
-      0% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(10);
-        opacity: 0.3;
-      }
-    }
+@keyframes scaleAndFade {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(10);
+    opacity: 0.3;
+  }
+}
 
-    @keyframes fadeOutWrapper {
-      0% {
-        opacity: 1;
-        visibility: visible;
-      }
-      100% {
-        opacity: 0;
-        visibility: hidden;
-        display: none; 
-      }
-    }
+@keyframes fadeOutWrapper {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+  }
+}
 
-    .main-content {
-      opacity: 0;
-      animation: showMain 0.6s ease-in forwards;
-      animation-delay: 5s;
-      
-    }
+.main-content {
+  opacity: 0;
+  animation: showMain 0.6s ease-in forwards;
+  animation-delay: 5s;
+  margin: 0; /* remove margin */
+  padding: 0; /* remove padding */
+}
 
-    @keyframes showMain {
-      to {
-        opacity: 1;
-      }
-    }
-
+@keyframes showMain {
+  to {
+    opacity: 1;
+  }
+}
 
 
     
