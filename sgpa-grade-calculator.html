@@ -679,6 +679,12 @@
         font-size: 0.9rem;
     }
 }
+
+
+     .info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
     </style>
 </head>
 <body>
@@ -762,15 +768,15 @@
           <div style="background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; width: 3rem; height: 3rem; border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
             <i class="fas fa-graduation-cap" style="font-size: 1.25rem;"></i>
           </div>
-          <h3 style="font-size: 1.25rem; font-weight: 600; color: #1f2937; margin: 0;">SGPA Calculator</h3>
+          <h3 style="font-size: 1.25rem; font-weight: 600; color: #1f2937; margin: 0;">CGPA Calculator</h3>
         </div>
         <p style="color: #4b5563; line-height: 1.6; margin: 0;">
-          Calculate your Semester Grade Point Average with ease. Add your subjects, credits, and grades to get instant results.
+         Calculate your Cumulative Grade Point Average across all semesters. Enter your semester credits and SGPA to get instant results.
           <br><br>
-          <a href="https://sastraelibrary.netlify.app/sgpa-grade-calculator"
-             title="Calculate SGPA for individual semesters"
+          <a href="https://sastraelibrary.netlify.app/cgpa-grade-calculator"
+             title="Calculate CGPA for individual semesters"
              style="display: inline-block; padding: 10px 20px; background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
-            Calculate SGPA
+            Calculate CGPA
           </a>
         </p>
       </article>
@@ -822,7 +828,7 @@
     <section class="info-section" style="padding: 3rem 0; background: linear-gradient(135deg, #f8fafc, #e2e8f0);">
     <div class="container" style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;">
         <h2 style="font-size: 2rem; font-weight: 700; text-align: center; color: #1f2937; margin-bottom: 2rem; position: relative; padding-bottom: 1rem;">
-            Understanding CGPA: Complete Guide for Sastra Students
+            Understanding SGPA: Complete Guide for Sastra Students
             <span style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 4rem; height: 0.25rem; background: linear-gradient(135deg, #6366f1, #4f46e5); border-radius: 0.125rem;"></span>
         </h2>
         
@@ -832,9 +838,9 @@
                     <div style="background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; width: 3rem; height: 3rem; border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
                         <i class="fas fa-graduation-cap" style="font-size: 1.25rem;"></i>
                     </div>
-                    <h3 style="font-size: 1.25rem; font-weight: 600; color: #1f2937; margin: 0;">What is CGPA?</h3>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: #1f2937; margin: 0;">What is SGPA?</h3>
                 </div>
-                <p style="color: #4b5563; line-height: 1.6; margin: 0;">CGPA (Cumulative Grade Point Average) represents your overall academic performance across all semesters at Sastra University. It's calculated by dividing total grade points earned by total credits attempted, providing a comprehensive measure of your academic achievement.</p>
+                <p style="color: #4b5563; line-height: 1.6; margin: 0;"> SGPA (Semester Grade Point Average) represents your academic performance in a single semester at Sastra University. It’s calculated by dividing total grade points earned in that semester by total credits attempted for that semester, providing a focused measure of your academic achievement for that term.</p>
             </article>
             
             <article class="info-card" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); transition: all 0.3s ease; border: 1px solid #e5e7eb;">
@@ -858,77 +864,78 @@
             </article>
         </div>
         
-        <!-- CGPA Formula Explanation -->
+        <!-- SGPA Formula Explanation -->
         <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); border-left: 4px solid #6366f1;">
             <h3 style="font-size: 1.5rem; font-weight: 600; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center;">
                 <i class="fas fa-calculator" style="color: #6366f1; margin-right: 0.75rem;"></i>
-                CGPA Calculation Formula
+                SGPA Calculation Formula
             </h3>
-            <div style="background: #f8fafc; padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid #e2e8f0;">
-                <p style="font-family: 'Courier New', monospace; font-size: 1.125rem; text-align: center; color: #374151; margin: 0; font-weight: 600;">
-                    CGPA = (Sum of all Semester Grade Points) ÷ (Total Credits of all Semesters)
-                </p>
-            </div>
-            <p style="color: #6b7280; line-height: 1.6; margin: 0;"><strong>Example:</strong> If you have completed 4 semesters with 20 credits each and SGPAs of 8.5, 8.2, 8.8, and 8.0, your CGPA would be: (8.5×20 + 8.2×20 + 8.8×20 + 8.0×20) ÷ (20+20+20+20) = 8.375</p>
+           <div style="background: #f8fafc; padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid #e2e8f0;">
+    <p style="font-family: 'Courier New', monospace; font-size: 1.125rem; text-align: center; color: #374151; margin: 0; font-weight: 600;">
+        SGPA = (Sum of Grade Points of all Subjects in a Semester) ÷ (Total Credits in that Semester)
+    </p>
+</div>
+<p style="color: #6b7280; line-height: 1.6; margin: 0;"><strong>Example:</strong> If you have 5 subjects with credits 4, 3, 3, 3, and 2 and corresponding grades of 9, 8, 10, 7, and 8, then your SGPA would be: (9×4 + 8×3 + 10×3 + 7×3 + 8×2) ÷ (4+3+3+3+2) = 8.26</p>
         </div>
     </div>
 </section>
 
-    <section class="faq-section" style="padding: 4rem 0; background-color: #f9fafb;">
+  
+<section class="faq-section" style="padding: 4rem 0; background-color: #f9fafb;">
     <div class="container" style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;">
         <h2 style="font-size: 2rem; font-weight: 700; text-align: center; color: #1f2937; margin-bottom: 3rem; position: relative; padding-bottom: 1rem;">
-            Frequently Asked Questions
+            SGPA Related Questions
             <span style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 4rem; height: 0.25rem; background: linear-gradient(135deg, #6366f1, #4f46e5); border-radius: 0.125rem;"></span>
         </h2>
-        
+
         <div class="faq-container" style="max-width: 800px; margin: 0 auto;">
-            <div class="faq-item" style="background: white; margin-bottom: 1rem; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); overflow: hidden; border: 1px solid #e5e7eb;">
-                <button class="faq-question" onclick="toggleFaq(this)" style="width: 100%; padding: 1.5rem; text-align: left; background: none; border: none; font-size: 1.125rem; font-weight: 600; color: #1f2937; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s ease;">
-                    How to calculate CGPA in Sastra University?
+            <div class="faq-item" style="background: white; margin-bottom: 1rem; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border: 1px solid #e5e7eb;">
+                <button class="faq-question" onclick="toggleFaq(this)" style="width: 100%; padding: 1.5rem; text-align: left; background: none; border: none; font-size: 1.125rem; font-weight: 600; color: #1f2937; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                    What is SGPA in Sastra University?
                     <i class="fas fa-chevron-down faq-icon" style="color: #6366f1; transition: transform 0.3s ease;"></i>
                 </button>
                 <div class="faq-answer" style="padding: 0 1.5rem 1.5rem; color: #4b5563; line-height: 1.6; display: none;">
-                    <p style="margin: 0;">CGPA in Sastra University is calculated using the formula: <strong>CGPA = (Sum of all semester grade points) ÷ (Total credits of all semesters)</strong>. Each semester's contribution is weighted by its credit hours, ensuring that higher-credit semesters have more impact on your overall CGPA.</p>
+                    <p style="margin: 0;">SGPA (Semester Grade Point Average) represents your academic performance in a particular semester. It is calculated using the formula: <strong>SGPA = (Sum of subject-wise grade points) ÷ (Total credits for the semester)</strong>. It reflects how well you've performed in that specific term.</p>
                 </div>
             </div>
-            
-            <div class="faq-item" style="background: white; margin-bottom: 1rem; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); overflow: hidden; border: 1px solid #e5e7eb;">
-                <button class="faq-question" onclick="toggleFaq(this)" style="width: 100%; padding: 1.5rem; text-align: left; background: none; border: none; font-size: 1.125rem; font-weight: 600; color: #1f2937; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s ease;">
-                    What is a good CGPA in Sastra University?
+
+            <div class="faq-item" style="background: white; margin-bottom: 1rem; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border: 1px solid #e5e7eb;">
+                <button class="faq-question" onclick="toggleFaq(this)" style="width: 100%; padding: 1.5rem; text-align: left; background: none; border: none; font-size: 1.125rem; font-weight: 600; color: #1f2937; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                    How is SGPA different from CGPA?
                     <i class="fas fa-chevron-down faq-icon" style="color: #6366f1; transition: transform 0.3s ease;"></i>
                 </button>
                 <div class="faq-answer" style="padding: 0 1.5rem 1.5rem; color: #4b5563; line-height: 1.6; display: none;">
-                    <p style="margin: 0;">A CGPA above <strong>8.5 is considered excellent</strong> and opens doors to top companies and higher education opportunities. A CGPA between <strong>7.5-8.5 is good</strong> for most career paths, while <strong>6.5-7.5 is average</strong> in Sastra University. For placement purposes, most companies prefer a minimum CGPA of 7.0.</p>
+                    <p style="margin: 0;">SGPA is the average of grade points earned in a single semester, while CGPA is the cumulative average over all completed semesters. SGPA helps track your performance term by term, whereas CGPA gives an overall academic snapshot.</p>
                 </div>
             </div>
-            
-            <div class="faq-item" style="background: white; margin-bottom: 1rem; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); overflow: hidden; border: 1px solid #e5e7eb;">
-                <button class="faq-question" onclick="toggleFaq(this)" style="width: 100%; padding: 1.5rem; text-align: left; background: none; border: none; font-size: 1.125rem; font-weight: 600; color: #1f2937; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s ease;">
-                    Can I improve my CGPA in later semesters?
+
+            <div class="faq-item" style="background: white; margin-bottom: 1rem; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border: 1px solid #e5e7eb;">
+                <button class="faq-question" onclick="toggleFaq(this)" style="width: 100%; padding: 1.5rem; text-align: left; background: none; border: none; font-size: 1.125rem; font-weight: 600; color: #1f2937; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                    What grades are considered in SGPA calculation?
                     <i class="fas fa-chevron-down faq-icon" style="color: #6366f1; transition: transform 0.3s ease;"></i>
                 </button>
                 <div class="faq-answer" style="padding: 0 1.5rem 1.5rem; color: #4b5563; line-height: 1.6; display: none;">
-                    <p style="margin: 0;">Yes, you can improve your CGPA by performing well in subsequent semesters. However, the impact decreases as you progress because more semesters contribute to the average. Early semesters have a lasting impact, so it's crucial to maintain good grades from the beginning of your academic journey.</p>
+                    <p style="margin: 0;">Sastra University uses a 10-point grading system. Grades like <strong>S (10), A+ (9), A (8), B (7), C (6), D (5), F (2)</strong> are assigned grade points. These points are multiplied by the credit value of the subject for SGPA computation.</p>
                 </div>
             </div>
-            
-            <div class="faq-item" style="background: white; margin-bottom: 1rem; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); overflow: hidden; border: 1px solid #e5e7eb;">
-                <button class="faq-question" onclick="toggleFaq(this)" style="width: 100%; padding: 1.5rem; text-align: left; background: none; border: none; font-size: 1.125rem; font-weight: 600; color: #1f2937; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s ease;">
-                    How does Sastra's grading system compare to percentage?
+
+            <div class="faq-item" style="background: white; margin-bottom: 1rem; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border: 1px solid #e5e7eb;">
+                <button class="faq-question" onclick="toggleFaq(this)" style="width: 100%; padding: 1.5rem; text-align: left; background: none; border: none; font-size: 1.125rem; font-weight: 600; color: #1f2937; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                    What is a good SGPA at Sastra?
                     <i class="fas fa-chevron-down faq-icon" style="color: #6366f1; transition: transform 0.3s ease;"></i>
                 </button>
                 <div class="faq-answer" style="padding: 0 1.5rem 1.5rem; color: #4b5563; line-height: 1.6; display: none;">
-                    <p style="margin: 0;">Sastra's 10-point scale roughly translates as: <strong>CGPA 9-10 = 90-100%</strong>, <strong>CGPA 8-9 = 80-90%</strong>, <strong>CGPA 7-8 = 70-80%</strong>, and so on. However, this is approximate since the grading system also considers relative performance and subject difficulty.</p>
+                    <p style="margin: 0;">An SGPA of <strong>8.5 or above</strong> is excellent, <strong>7.5–8.5</strong> is considered good, and <strong>6.5–7.5</strong> is average. Maintaining a high SGPA is key to achieving a strong CGPA and improving placement or higher education chances.</p>
                 </div>
             </div>
-            
-            <div class="faq-item" style="background: white; margin-bottom: 1rem; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); overflow: hidden; border: 1px solid #e5e7eb;">
-                <button class="faq-question" onclick="toggleFaq(this)" style="width: 100%; padding: 1.5rem; text-align: left; background: none; border: none; font-size: 1.125rem; font-weight: 600; color: #1f2937; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s ease;">
-                    Is this calculator accurate for all Sastra courses?
+
+            <div class="faq-item" style="background: white; margin-bottom: 1rem; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border: 1px solid #e5e7eb;">
+                <button class="faq-question" onclick="toggleFaq(this)" style="width: 100%; padding: 1.5rem; text-align: left; background: none; border: none; font-size: 1.125rem; font-weight: 600; color: #1f2937; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                    Is this SGPA calculator accurate?
                     <i class="fas fa-chevron-down faq-icon" style="color: #6366f1; transition: transform 0.3s ease;"></i>
                 </button>
                 <div class="faq-answer" style="padding: 0 1.5rem 1.5rem; color: #4b5563; line-height: 1.6; display: none;">
-                    <p style="margin: 0;">Yes, this calculator works for all Sastra University courses including B.Tech, B.E., M.Tech, MBA, and other programs. It uses the standard 10-point grading system followed across all departments at Sastra University, Thanjavur.</p>
+                    <p style="margin: 0;">Yes, this SGPA calculator is designed specifically for Sastra University's grading system. It follows the exact credit-weighted grade point formula used by the university and supports all courses and departments.</p>
                 </div>
             </div>
         </div>
