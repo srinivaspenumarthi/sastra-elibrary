@@ -74,6 +74,27 @@
 <!-- Adsense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408563994504326" crossorigin="anonymous"></script>
 
+
+  <script>
+  const skipIntroHashes = ["#materials", "#tools"];
+  const hash = window.location.hash;
+
+  // Disable animation globally if hash matches
+  if (skipIntroHashes.includes(hash)) {
+    document.addEventListener("DOMContentLoaded", () => {
+      const wrapper = document.querySelector(".logo-wrapper");
+      if (wrapper) {
+        wrapper.style.display = "none";
+      }
+
+      const main = document.querySelector(".main-content");
+      if (main) {
+        main.style.opacity = "1";
+        main.style.animation = "none";
+      }
+    });
+  }
+</script>
 <!-- Enhanced Structured Data: Website -->
 <script type="application/ld+json">
 {
@@ -2198,20 +2219,7 @@
 
 
 
-  const skipIntroHashes = ["#materials", "#tools"];
-
-  if (skipIntroHashes.includes(window.location.hash)) {
-    const wrapper = document.querySelector(".logo-wrapper");
-    if (wrapper) {
-      wrapper.style.display = "none"; // skip logo intro
-    }
-
-    const main = document.querySelector(".main-content");
-    if (main) {
-      main.style.opacity = "1"; // show main instantly
-      main.style.animation = "none"; // remove 2s delay animation
-    }
-  }
+ 
 </script>
 </body>
 </html>
