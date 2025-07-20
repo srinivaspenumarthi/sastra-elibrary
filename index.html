@@ -2076,49 +2076,87 @@
 
 
 
+function toggleMobileMenu() {
+  const navLinks = document.querySelector('.nav-links');
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  
+  if (navLinks.style.display === 'flex') {
+    closeMobileMenu();
+  } else {
+    openMobileMenu();
+  }
+}
 
- // Mobile menu functionality
-    function toggleMobileMenu() {
-      const navLinks = document.querySelector('.nav-links');
-      const mobileMenuButton = document.getElementById('mobile-menu-button');
-      
-      if (navLinks.style.display === 'flex') {
-        navLinks.style.display = 'none';
-        mobileMenuButton.innerHTML = '<i class="fas fa-bars"></i>';
-      } else {
-        navLinks.style.display = 'flex';
-        navLinks.style.flexDirection = 'column';
-        navLinks.style.position = 'absolute';
-        navLinks.style.top = '100%';
-        navLinks.style.left = '0';
-        navLinks.style.right = '0';
-        navLinks.style.backgroundColor = 'var(--primary-dark)';
-        navLinks.style.padding = '1rem';
-        navLinks.style.zIndex = '50';
-        mobileMenuButton.innerHTML = '<i class="fas fa-times"></i>';
-      }
-    }
+function openMobileMenu() {
+  const navLinks = document.querySelector('.nav-links');
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  
+  navLinks.style.display = 'flex';
+  navLinks.style.flexDirection = 'column';
+  navLinks.style.position = 'absolute';
+  navLinks.style.top = '100%';
+  navLinks.style.left = '0';
+  navLinks.style.right = '0';
+  navLinks.style.backgroundColor = 'var(--primary-dark)';
+  navLinks.style.padding = '1rem';
+  navLinks.style.zIndex = '50';
+  navLinks.classList.add('active-mobile-menu');
+  mobileMenuButton.innerHTML = '<i class="fas fa-times"></i>';
+  
+  // Add click outside listener
+  setTimeout(() => {
+    document.addEventListener('click', handleClickOutside);
+  }, 0);
+}
+
+function closeMobileMenu() {
+  const navLinks = document.querySelector('.nav-links');
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  
+  navLinks.style.display = 'none';
+  navLinks.classList.remove('active-mobile-menu');
+  mobileMenuButton.innerHTML = '<i class="fas fa-bars"></i>';
+  
+  // Remove click outside listener
+  document.removeEventListener('click', handleClickOutside);
+}
+
+function handleClickOutside(event) {
+  const navLinks = document.querySelector('.nav-links');
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const nav = document.querySelector('nav'); // Assuming your nav container
+  
+  // Check if the click is outside the navigation area
+  if (!nav.contains(event.target)) {
+    closeMobileMenu();
+  }
+}
+
+// Handle window resize for responsive navigation
+window.addEventListener('resize', function() {
+  const navLinks = document.querySelector('.nav-links');
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  
+  if (window.innerWidth > 768) {
+    // Reset to desktop view
+    navLinks.style.display = 'flex';
+    navLinks.style.flexDirection = '';
+    navLinks.style.position = '';
+    navLinks.style.top = '';
+    navLinks.style.left = '';
+    navLinks.style.right = '';
+    navLinks.style.backgroundColor = '';
+    navLinks.style.padding = '';
+    navLinks.style.zIndex = '';
+    navLinks.classList.remove('active-mobile-menu');
+    mobileMenuButton.innerHTML = '<i class="fas fa-bars"></i>';
     
-    // Handle window resize for responsive navigation
-    window.addEventListener('resize', function() {
-      const navLinks = document.querySelector('.nav-links');
-      const mobileMenuButton = document.getElementById('mobile-menu-button');
-      
-      if (window.innerWidth > 768) {
-        navLinks.style.display = 'flex';
-        navLinks.style.flexDirection = '';
-        navLinks.style.position = '';
-        navLinks.style.top = '';
-        navLinks.style.left = '';
-        navLinks.style.right = '';
-        navLinks.style.backgroundColor = '';
-        navLinks.style.padding = '';
-        navLinks.style.zIndex = '';
-        mobileMenuButton.innerHTML = '<i class="fas fa-bars"></i>';
-      } else if (!navLinks.classList.contains('active-mobile-menu')) {
-        navLinks.style.display = 'none';
-      }
-    });
+    // Remove click outside listener when switching to desktop
+    document.removeEventListener('click', handleClickOutside);
+  } else if (!navLinks.classList.contains('active-mobile-menu')) {
+    navLinks.style.display = 'none';
+  }
+});
   </script>
     
     
