@@ -2192,7 +2192,26 @@
 
   setTimeout(() => {
     document.querySelector('.logo-wrapper')?.remove();
-  }, 5000); 
+  }, 5000);
+
+
+
+
+
+  const skipIntroHashes = ["#materials", "#tools"];
+
+  if (skipIntroHashes.includes(window.location.hash)) {
+    const wrapper = document.getElementById("logoWrapper");
+    if (wrapper) {
+      wrapper.style.display = "none"; // skip logo
+    }
+
+    const main = document.querySelector(".main-content");
+    if (main) {
+      main.style.opacity = "1"; // show instantly
+      main.style.animation = "none"; // cancel CSS animation
+    }
+  }
 </script>
 </body>
 </html>
