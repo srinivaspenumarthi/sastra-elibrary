@@ -2201,15 +2201,15 @@
   const skipIntroHashes = ["#materials", "#tools"];
 
   if (skipIntroHashes.includes(window.location.hash)) {
-    const wrapper = document.getElementById("logoWrapper");
+    const wrapper = document.querySelector(".logo-wrapper");
     if (wrapper) {
-      wrapper.style.display = "none"; // skip logo
+      wrapper.style.display = "none"; // skip logo intro
     }
 
     const main = document.querySelector(".main-content");
     if (main) {
-      main.style.opacity = "1"; // show instantly
-      main.style.animation = "none"; // cancel CSS animation
+      main.style.opacity = "1"; // show main instantly
+      main.style.animation = "none"; // remove 2s delay animation
     }
   }
 </script>
