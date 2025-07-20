@@ -2074,51 +2074,71 @@
       }
     });
 
-    // Mobile menu functionality
-    function toggleMobileMenu() {
-      const navLinks = document.querySelector('.nav-links');
-      const mobileMenuButton = document.getElementById('mobile-menu-button');
-      
-      if (navLinks.style.display === 'flex') {
-        navLinks.style.display = 'none';
-        mobileMenuButton.innerHTML = '<i class="fas fa-bars"></i>';
-      } else {
-        navLinks.style.display = 'flex';
-        navLinks.style.flexDirection = 'column';
-        navLinks.style.position = 'absolute';
-        navLinks.style.top = '100%';
-        navLinks.style.left = '0';
-        navLinks.style.right = '0';
-        navLinks.style.backgroundColor = 'var(--primary-dark)';
-        navLinks.style.padding = '1rem';
-        navLinks.style.zIndex = '50';
-        mobileMenuButton.innerHTML = '<i class="fas fa-times"></i>';
-      }
+    let isMobileMenuOpen = false;
+
+  function toggleMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+    if (navLinks.style.display === 'flex') {
+      navLinks.style.display = 'none';
+      mobileMenuButton.innerHTML = '<i class="fas fa-bars"></i>';
+      isMobileMenuOpen = false;
+    } else {
+      navLinks.style.display = 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '100%';
+      navLinks.style.left = '0';
+      navLinks.style.right = '0';
+      navLinks.style.backgroundColor = 'var(--primary-dark)';
+      navLinks.style.padding = '1rem';
+      navLinks.style.zIndex = '50';
+      mobileMenuButton.innerHTML = '<i class="fas fa-times"></i>';
+      isMobileMenuOpen = true;
     }
+  }
+
+  // Handle window resize
+  window.addEventListener('resize', function () {
+    const navLinks = document.querySelector('.nav-links');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+    if (window.innerWidth > 768) {
+      navLinks.style.display = 'flex';
+      navLinks.style.flexDirection = '';
+      navLinks.style.position = '';
+      navLinks.style.top = '';
+      navLinks.style.left = '';
+      navLinks.style.right = '';
+      navLinks.style.backgroundColor = '';
+      navLinks.style.padding = '';
+      navLinks.style.zIndex = '';
+      mobileMenuButton.innerHTML = '<i class="fas fa-bars"></i>';
+      isMobileMenuOpen = false;
+    } else if (!navLinks.classList.contains('active-mobile-menu')) {
+      navLinks.style.display = 'none';
+    }
+  });
+
+  // Close mobile menu if clicked outside
+  document.addEventListener('click', function (event) {
+    const navLinks = document.querySelector('.nav-links');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+    const clickedInsideMenu = navLinks.contains(event.target);
+    const clickedOnButton = mobileMenuButton.contains(event.target);
+
+    if (isMobileMenuOpen && !clickedInsideMenu && !clickedOnButton) {
+      navLinks.style.display = 'none';
+      mobileMenuButton.innerHTML = '<i class="fas fa-bars"></i>';
+      isMobileMenuOpen = false;
+    }
+  });
+
+
+
     
-    // Handle window resize for responsive navigation
-    window.addEventListener('resize', function() {
-      const navLinks = document.querySelector('.nav-links');
-      const mobileMenuButton = document.getElementById('mobile-menu-button');
-      
-      if (window.innerWidth > 768) {
-        navLinks.style.display = 'flex';
-        navLinks.style.flexDirection = '';
-        navLinks.style.position = '';
-        navLinks.style.top = '';
-        navLinks.style.left = '';
-        navLinks.style.right = '';
-        navLinks.style.backgroundColor = '';
-        navLinks.style.padding = '';
-        navLinks.style.zIndex = '';
-        mobileMenuButton.innerHTML = '<i class="fas fa-bars"></i>';
-      } else if (!navLinks.classList.contains('active-mobile-menu')) {
-        navLinks.style.display = 'none';
-      }
-    });
-  </script>
-
-
 <style>
   #online-badge {
     position: fixed;
