@@ -74,19 +74,16 @@
 <!-- Adsense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9408563994504326" crossorigin="anonymous"></script>
 
-
-  <script>
-  const skipIntroHashes = ["#materials", "#tools"];
-  const hash = window.location.hash;
-
-  // Disable animation globally if hash matches
-  if (skipIntroHashes.includes(hash)) {
+<script>
+  if (window.location.hash) {
     document.addEventListener("DOMContentLoaded", () => {
+      // Skip and instantly hide the logo wrapper
       const wrapper = document.querySelector(".logo-wrapper");
       if (wrapper) {
         wrapper.style.display = "none";
       }
 
+      // Instantly show the main content
       const main = document.querySelector(".main-content");
       if (main) {
         main.style.opacity = "1";
@@ -95,6 +92,8 @@
     });
   }
 </script>
+
+  
 <!-- Enhanced Structured Data: Website -->
 <script type="application/ld+json">
 {
